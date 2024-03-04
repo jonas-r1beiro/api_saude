@@ -1,0 +1,18 @@
+package br.com.magnasistemas.api_saude.entity;
+
+import br.com.magnasistemas.api_saude.dto.especialidade.DadosCadastroEspecialidade;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_especialidade")
+public class Especialidade {
+	
+	public Especialidade(DadosCadastroEspecialidade dados) {
+		
+	}
+	
+	public Especialidade() {
+		
+	}
+}

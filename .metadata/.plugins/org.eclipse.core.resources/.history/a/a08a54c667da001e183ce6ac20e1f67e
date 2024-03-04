@@ -1,0 +1,7 @@
+package br.com.magnasistemas.api_saude.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public class EspecialidadeRepository implements JpaRepository<T, ID> {
+
+}
