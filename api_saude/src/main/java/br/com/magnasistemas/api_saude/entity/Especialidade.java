@@ -1,11 +1,15 @@
 package br.com.magnasistemas.api_saude.entity;
 
+import java.util.List;
+
 import br.com.magnasistemas.api_saude.dto.especialidade.DadosCadastroEspecialidade;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,9 +20,7 @@ public class Especialidade {
 		this.nome = dados.nome();
 	}
 	
-	public Especialidade() {
-		
-	}
+	public Especialidade() {}
 	
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -38,6 +40,9 @@ public class Especialidade {
 	public Long getId() {
 		return id;
 	}
+	
+	@OneToMany(mappedBy = "fkEspecialidade", cascade = CascadeType.ALL)
+	List<MedicoEspecialidade> medicoEspecialidade;
 	
 	
 }

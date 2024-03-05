@@ -1,0 +1,9 @@
+package br.com.magnasistemas.api_saude.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.magnasistemas.api_saude.entity.Paciente;
+
+public interface PacienteRepository extends JpaRepository<Paciente, Long> {
+
+}

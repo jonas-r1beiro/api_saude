@@ -1,0 +1,12 @@
+package br.com.magnasistemas.api_saude.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import br.com.magnasistemas.api_saude.entity.Consulta;
+
+public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
+
+	@Query(value = "DELETE FROM TB_CONSULTA; ALTER SEQUENCE TB_CONSULTA_id_seq RESTART WITH 1", nativeQuery = true)
+	void deleteAllAndReseteSequence();
+}

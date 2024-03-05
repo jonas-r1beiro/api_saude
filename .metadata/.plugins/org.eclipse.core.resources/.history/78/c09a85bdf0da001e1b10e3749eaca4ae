@@ -1,0 +1,10 @@
+package br.com.magnasistemas.api_saude.dto.medico;
+
+import jakarta.validation.constraints.NotBlank;
+
+public record DadosCadastroMedico(
+		@NotBlank(message = "O nome não pode estar vazio")
+		String nome
+		) {
+
+}

@@ -1,0 +1,12 @@
+package br.com.magnasistemas.api_saude.dto.medico;
+
+public record DadosDetalhamentoMedico(
+		Long id,
+		String nome,
+		String crm
+		) {
+
+	public DadosDetalhamentoMedico() {
+		
+	}
+}

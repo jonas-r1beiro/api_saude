@@ -1,0 +1,11 @@
+package br.com.magnasistemas.api_saude.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_paciente")
+public class Paciente {
+
+	
+}

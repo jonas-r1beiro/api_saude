@@ -1,0 +1,15 @@
+package br.com.magnasistemas.api_saude.dto.paciente;
+
+import java.sql.Date;
+
+public record DadosDetalhamentoPaciente(
+		Long id,
+		String nome,
+		Date dataNascimento,
+		String cpf,
+		String sexo,
+		String alergias,
+		String medicamentos
+		) {
+
+}

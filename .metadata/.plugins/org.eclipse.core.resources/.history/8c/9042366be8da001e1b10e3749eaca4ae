@@ -1,0 +1,16 @@
+package br.com.magnasistemas.api_saude.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.magnasistemas.api_saude.repository.EspecialidadeRepository;
+
+@Service
+public class EspecialidadeService {
+	
+	static final String MENSAGEMID = "O ID passado não existe!";
+	
+	@Autowired
+	EspecialidadeRepository especialidadeRepository;
+
+}

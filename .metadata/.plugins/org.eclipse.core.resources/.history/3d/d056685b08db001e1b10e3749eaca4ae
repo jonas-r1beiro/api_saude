@@ -1,0 +1,19 @@
+package br.com.magnasistemas.api_saude.dto.medicoEspecialidade;
+
+import br.com.magnasistemas.api_saude.dto.especialidade.DadosDetalhamentoEspecialidade;
+import br.com.magnasistemas.api_saude.dto.medico.DadosDetalhamentoMedico;
+import br.com.magnasistemas.api_saude.entity.MedicoEspecialidade;
+
+public record DadosDetalhamentoMedEsp(
+		Long id,
+		DadosDetalhamentoMedico medico,
+		DadosDetalhamentoEspecialidade especialidade
+		) {
+	
+	public DadosDetalhamentoMedEsp(MedicoEspecialidade ME) {
+		this(ME.getId(), 
+				new DadosDetalhamentoMedico(ME.getFkMedico()),
+				new DadosDetalhamentoEspecialidade(ME.getFkEspecialidade()));
+	}
+
+}
