@@ -1,0 +1,12 @@
+package br.com.magnasistemas.api_saude.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class TratadorDeErros {
+
+	public ResponseEntity tratarErro404() {
+		return ResponseEntity.notFound().build();
+	}
+}

@@ -19,14 +19,6 @@ v
 Fsrc/main/java/br/com/magnasistemas/api_saude/entity/Especialidade.java,d\5\d507787b13b9e9cbfc410764fbd7d219c773eb2d
 Ñ
 Tsrc/main/java/br/com/magnasistemas/api_saude/repository/EspecialidadeRepository.java,5\f\5f9ac0e1f8c11fc5462c4e9cb8cff5eefd5d9a4e
-{
-Ksrc/main/java/br/com/magnasistemas/api_saude/exception/TratadorDeErros.java,3\7\37cef96a855c5082bc5ecf1ba2eb02d5b77f28ee
-ë
-asrc/main/java/br/com/magnasistemas/api_saude/dto/medicoEspecialidade/DadosDetalhamentoMedEsp.java,0\c\0ca6332edc5a516ed89a5e1252294d804f555925
-ç
-]src/main/java/br/com/magnasistemas/api_saude/dto/medicoEspecialidade/DadosCadastroMedEsp.java,1\3\139e65f3ee90a562cc0b735bec4aaaa20fc783b5
-é
-^src/main/java/br/com/magnasistemas/api_saude/dto/medicoEspecialidade/DadosAtualizarMedEsp.java,7\0\70aa797813aa27e1f3dec512575f39b0dc632099
 Å
 Qsrc/main/java/br/com/magnasistemas/api_saude/dto/medico/DadosAtualizarMedico.java,3\e\3eaf776c7e8fcdf605001d70e4860d36dd62d47f
 Ö
@@ -85,3 +77,5 @@ o
 ?src/main/java/br/com/magnasistemas/api_saude/entity/Medico.java,1\4\146ad8b42734ae0b5a05daa277679cba2da701e6
 |
 Lsrc/main/java/br/com/magnasistemas/api_saude/entity/MedicoEspecialidade.java,f\9\f948d2b139d9625e5b1b718dff325f1fcb61685d
+{
+Ksrc/main/java/br/com/magnasistemas/api_saude/exception/TratadorDeErros.java,3\7\37cef96a855c5082bc5ecf1ba2eb02d5b77f28ee

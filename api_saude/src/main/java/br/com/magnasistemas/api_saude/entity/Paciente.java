@@ -9,6 +9,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "tb_paciente")
@@ -25,19 +30,26 @@ public class Paciente {
 	
 	public Paciente() {}
 	
+	@Positive(message = "Informe um número natural (maior que zero)")
+    @Digits(integer = 10, fraction = 0, message = "Informe um número natural (sem parte decimal)")
+	@NotNull(message = "O campo não pode ser nulo")
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "O nome não pode estar vazio")
 	@Column(name = "nome")
 	private String nome;
 	
+	@NotNull
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 	
+	@Pattern(regexp = "^\\d{11}$", message = "O CPF deve conter 11 números")
 	@Column(name = "cpf")
 	private String cpf;
 	
+	@Pattern(regexp = "^[fFmM]$", message = "O sexo deve ser representado por F ou M, sendo, respectivamente, Feminino e Masculino")
 	@Column(name = "sexo")
 	private String sexo;
 	

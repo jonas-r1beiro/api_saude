@@ -11,6 +11,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "tb_medico")
@@ -22,13 +27,18 @@ public class Medico {
 	
 	public Medico() {}
 	
+	@Positive(message = "Informe um número natural (maior que zero)")
+    @Digits(integer = 10, fraction = 0, message = "Informe um número natural (sem parte decimal)")
+	@NotNull(message = "O campo não pode ser nulo")
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "O nome não pode estar vazio")
 	@Column(name = "nome")
 	private String nome;
 	
+	@Pattern(regexp = "^\\d{6}$", message = "O CRM deve conter 6 números")
 	@Column(name = "crm")
 	private String crm;
 

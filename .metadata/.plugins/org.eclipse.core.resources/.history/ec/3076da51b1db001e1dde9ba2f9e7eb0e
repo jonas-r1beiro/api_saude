@@ -1,8 +1,8 @@
 package br.com.magnasistemas.api_saude.service;
 
 import java.sql.Timestamp;
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,6 +43,13 @@ public class ConsultaService {
 			return ResponseEntity.notFound().build();
 		}
 		
+		Long idMedico = medEspRepository.getReferenceById(dados.idMedEsp()).getFkMedico().getId();
+		
+		if(!consultaValida(dados.dataHora(), dados.idPaciente(), idMedico)) {
+			return ResponseEntity.status(409).build();
+		}
+		
+		
 		Consulta consulta = new Consulta(
 										pacienteRepository.getReferenceById(dados.idPaciente()),
 										medEspRepository.getReferenceById(dados.idMedEsp()),
@@ -78,6 +85,12 @@ public class ConsultaService {
 			return ResponseEntity.notFound().build();
 		}
 		
+		Long idMedico = medEspRepository.getReferenceById(dados.idMedEsp()).getFkMedico().getId();
+		
+		if(!consultaValida(dados.dataHora(), dados.idPaciente(), idMedico)) {
+			return ResponseEntity.status(409).build();
+		}
+		
 		Consulta consulta = consultaRepository.getReferenceById(dados.id());
 		
 		consulta.setFkPaciente(pacienteRepository.getReferenceById(dados.idPaciente()));
@@ -107,14 +120,27 @@ public class ConsultaService {
 		return ResponseEntity.ok(new DadosDetalhamentoConsulta(consulta));
 	}
 	
-	private boolean consultaValida(Timestamp dataHora) {
+	private boolean consultaValida(Timestamp dataHora, Long idPaciente, Long idMedico) {
 		LocalDateTime localDateTime = dataHora.toLocalDateTime();
 		int horaConsulta = localDateTime.getHour();
-		DayOfWeek diaSemana = localDateTime.getDayOfWeek();
-		if(horaConsulta + 1 > 18 || horaConsulta < 9 || ) {
-			return false;
-		}
+		int diaSemana = localDateTime.getDayOfWeek().getValue();
 		
+		List<Consulta> consultaBanco1 = consultaRepository.consultaPorDia(idPaciente, dataHora);
+		List<Consulta> consultaBanco2 = consultaRepository.horarioMedico(idMedico, dataHora);
+		
+//		if(horaConsulta + 1 >= 18 || horaConsulta < 9 || diaSemana == 6 || diaSemana == 7 
+//				|| !consultaBanco1.isEmpty() || !consultaBanco2.isEmpty()) {
+//			return false;
+//		}
+		
+		boolean isConsultaForaDoHorario = horaConsulta + 1 >= 18 || horaConsulta < 9;
+		boolean isFimDeSemana = diaSemana == 6 || diaSemana == 7;
+		boolean consultaBanco1NaoVazia = !consultaBanco1.isEmpty();
+		boolean consultaBanco2NaoVazia = !consultaBanco2.isEmpty();
+
+		if (isConsultaForaDoHorario || isFimDeSemana || consultaBanco1NaoVazia || consultaBanco2NaoVazia) {
+		    return false;
+		}
 		
 		
 		

@@ -128,20 +128,8 @@ public class ConsultaService {
 		List<Consulta> consultaBanco1 = consultaRepository.consultaPorDia(idPaciente, dataHora);
 		List<Consulta> consultaBanco2 = consultaRepository.horarioMedico(idMedico, dataHora);
 		
-		/*
-		if(horaConsulta + 1 >= 18 || horaConsulta < 9 || diaSemana == 6 || diaSemana == 7 || !consultaBanco1.isEmpty()
-				||  !listaConsultas.isEmpty()) {
-			return false;
-		}
-		*/
+		return !(horaConsulta + 1 >= 18 || horaConsulta < 9 || diaSemana == 6 || diaSemana == 7 
+		        || !consultaBanco1.isEmpty() || !consultaBanco2.isEmpty());
 		
-		if(horaConsulta + 1 >= 18 || horaConsulta < 9 || diaSemana == 6 || diaSemana == 7 
-				|| !consultaBanco1.isEmpty() || !consultaBanco2.isEmpty()) {
-			return false;
-		}
-		
-		
-		
-		return true;
 	}
 }
