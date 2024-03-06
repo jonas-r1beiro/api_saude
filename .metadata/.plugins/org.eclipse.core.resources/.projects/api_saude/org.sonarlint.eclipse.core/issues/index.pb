@@ -79,3 +79,7 @@ o
 Lsrc/main/java/br/com/magnasistemas/api_saude/entity/MedicoEspecialidade.java,f\9\f948d2b139d9625e5b1b718dff325f1fcb61685d
 {
 Ksrc/main/java/br/com/magnasistemas/api_saude/exception/TratadorDeErros.java,3\7\37cef96a855c5082bc5ecf1ba2eb02d5b77f28ee
+{
+Ksrc/main/java/br/com/magnasistemas/api_saude/controller/TestController.java,9\e\9eff986d84bd1c5d24c583b823c4c1f575267326
+w
+Gsrc/main/java/br/com/magnasistemas/api_saude/dto/testes/DadosTeste.java,e\9\e9559ba3019b320599ca32675adfa0f7062384bd

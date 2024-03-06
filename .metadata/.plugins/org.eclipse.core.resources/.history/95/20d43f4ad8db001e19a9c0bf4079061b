@@ -1,0 +1,8 @@
+package br.com.magnasistemas.api_saude.dto.testes;
+
+import java.util.ArrayList;
+
+public record DadosTeste(
+		ArrayList<Long> dadosTeste
+		) {
+}

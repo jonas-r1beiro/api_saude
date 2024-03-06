@@ -16,7 +16,8 @@ import br.com.magnasistemas.api_saude.dto.consulta.DadosCadastroConsulta;
 import br.com.magnasistemas.api_saude.dto.consulta.DadosDetalhamentoConsulta;
 import br.com.magnasistemas.api_saude.entity.Consulta;
 import br.com.magnasistemas.api_saude.repository.ConsultaRepository;
-import br.com.magnasistemas.api_saude.repository.MedEspRepository;
+import br.com.magnasistemas.api_saude.repository.EspecialidadeRepository;
+import br.com.magnasistemas.api_saude.repository.MedicoRepository;
 import br.com.magnasistemas.api_saude.repository.PacienteRepository;
 import jakarta.validation.Valid;
 
@@ -29,13 +30,20 @@ public class ConsultaService {
 	ConsultaRepository consultaRepository;
 	
 	@Autowired
-	MedEspRepository medEspRepository;
+	MedicoRepository medicoRepository;
+	
+	@Autowired
+	EspecialidadeRepository especialidadeRepository;
 	
 	@Autowired
 	PacienteRepository pacienteRepository;
 	
 	public ResponseEntity<DadosDetalhamentoConsulta> cadastro (@Valid DadosCadastroConsulta dados){
-		if(!medEspRepository.existsById(dados.idMedEsp())) {
+		if(!medicoRepository.existsById(dados.idMedico())) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		if(!especialidadeRepository.existsById(dados.idEspecialidade())) {
 			return ResponseEntity.notFound().build();
 		}
 		
@@ -43,7 +51,8 @@ public class ConsultaService {
 			return ResponseEntity.notFound().build();
 		}
 		
-		Long idMedico = medEspRepository.getReferenceById(dados.idMedEsp()).getFkMedico().getId();
+		//Long idMedico = medicoRepository.getReferenceById(dados.idMedico()).getId();
+		Long idMedico = dados.idMedico();
 		
 		if(!consultaValida(dados.dataHora(), dados.idPaciente(), idMedico)) {
 			return ResponseEntity.status(409).build();
@@ -52,7 +61,8 @@ public class ConsultaService {
 		
 		Consulta consulta = new Consulta(
 										pacienteRepository.getReferenceById(dados.idPaciente()),
-										medEspRepository.getReferenceById(dados.idMedEsp()),
+										medicoRepository.getReferenceById(dados.idMedico()),
+										especialidadeRepository.getReferenceById(dados.idEspecialidade()),
 										dados.dataHora()
 										);
 		
@@ -77,7 +87,11 @@ public class ConsultaService {
 			return ResponseEntity.notFound().build();
 		}
 		
-		if(!medEspRepository.existsById(dados.idMedEsp())) {
+		if(!medicoRepository.existsById(dados.idMedico())) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		if(!especialidadeRepository.existsById(dados.idEspecialidade())) {
 			return ResponseEntity.notFound().build();
 		}
 		
@@ -85,7 +99,7 @@ public class ConsultaService {
 			return ResponseEntity.notFound().build();
 		}
 		
-		Long idMedico = medEspRepository.getReferenceById(dados.idMedEsp()).getFkMedico().getId();
+		Long idMedico = medicoRepository.getReferenceById(dados.idMedico()).getId();
 		
 		if(!consultaValida(dados.dataHora(), dados.idPaciente(), idMedico)) {
 			return ResponseEntity.status(409).build();
@@ -94,7 +108,8 @@ public class ConsultaService {
 		Consulta consulta = consultaRepository.getReferenceById(dados.id());
 		
 		consulta.setFkPaciente(pacienteRepository.getReferenceById(dados.idPaciente()));
-		consulta.setFkMedEsp(medEspRepository.getReferenceById(dados.idMedEsp()));
+		consulta.setFkMedico(medicoRepository.getReferenceById(dados.idMedico()));
+		consulta.setFkEspecialidade(especialidadeRepository.getReferenceById(dados.idEspecialidade()));
 		consulta.setDataHora(dados.dataHora());
 		
 		return ResponseEntity.ok(new DadosDetalhamentoConsulta(consulta));
@@ -128,8 +143,14 @@ public class ConsultaService {
 		List<Consulta> consultaBanco1 = consultaRepository.consultaPorDia(idPaciente, dataHora);
 		List<Consulta> consultaBanco2 = consultaRepository.horarioMedico(idMedico, dataHora);
 		
-		return !(horaConsulta + 1 >= 18 || horaConsulta < 9 || diaSemana == 6 || diaSemana == 7 
-		        || !consultaBanco1.isEmpty() || !consultaBanco2.isEmpty());
+//		return !(horaConsulta + 1 >= 18 || horaConsulta < 9 || diaSemana == 6 || diaSemana == 7 
+//		        || !consultaBanco1.isEmpty() || !consultaBanco2.isEmpty());
+		if(horaConsulta + 1 >= 18 || horaConsulta < 9 || diaSemana == 6 || diaSemana == 7 || !consultaBanco1.isEmpty()
+				||  !consultaBanco2.isEmpty()) {
+			return false;
+		}
 		
+		return true;
+
 	}
 }

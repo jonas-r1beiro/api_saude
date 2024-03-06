@@ -1,5 +1,7 @@
 package br.com.magnasistemas.api_saude.dto.medico;
 
+import java.util.List;
+
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +16,9 @@ public record DadosAtualizarMedico(
 		@NotBlank(message = "O nome não pode estar vazio")
 		String nome,
 		@Pattern(regexp = "^\\d{6}$", message = "O CRM deve conter 6 números")
-		String crm
+		String crm,
+		@NotNull
+		List<Long> Especialidades
 		) {
 
 }

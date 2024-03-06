@@ -3,13 +3,14 @@ package br.com.magnasistemas.api_saude.entity;
 import java.util.List;
 
 import br.com.magnasistemas.api_saude.dto.medico.DadosCadastroMedico;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -27,9 +28,6 @@ public class Medico {
 	
 	public Medico() {}
 	
-	@Positive(message = "Informe um número natural (maior que zero)")
-    @Digits(integer = 10, fraction = 0, message = "Informe um número natural (sem parte decimal)")
-	@NotNull(message = "O campo não pode ser nulo")
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
@@ -62,7 +60,22 @@ public class Medico {
 		return id;
 	}
 	
-	@OneToMany(mappedBy = "fkMedico", cascade = CascadeType.ALL)
-	private List<MedicoEspecialidade> medicoEspecialidade;
+	@ManyToMany
+	@JoinTable(
+		name = "tb_medico_especialidade",
+		joinColumns = @JoinColumn(name = "fk_medico"),
+		inverseJoinColumns = @JoinColumn(name = "fk_especialidade")
+	)
+	List<Especialidade> especialidades;
+
+	public List<Especialidade> getEspecialidades() {
+		return especialidades;
+	}
+
+	public void setEspecialidades(List<Especialidade> especialidades) {
+		this.especialidades = especialidades;
+	}
+	
+	
 	
 }

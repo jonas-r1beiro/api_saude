@@ -18,17 +18,15 @@ import jakarta.validation.constraints.Positive;
 @Table(name = "tb_consulta")
 public class Consulta {
 
-	public Consulta(Paciente paciente, MedicoEspecialidade medEsp, Timestamp dataHora) {
+	public Consulta(Paciente paciente, Medico medico, Especialidade especialidade,Timestamp dataHora) {
 		this.fkPaciente = paciente;
-		this.fkMedEsp = medEsp;
+		this.fkMedico = medico;
 		this.dataHora = dataHora;
+		this.fkEspecialidade = especialidade;
 	}
 	
 	public Consulta() {}
 	
-	@Positive(message = "Informe um número natural (maior que zero)")
-    @Digits(integer = 10, fraction = 0, message = "Informe um número natural (sem parte decimal)")
-	@NotNull(message = "O campo não pode ser nulo")
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
@@ -40,8 +38,13 @@ public class Consulta {
 	
 	@NotNull(message = "O campo não pode ser nulo")
 	@ManyToOne
-	@JoinColumn(name = "fk_medico_especialidade")
-	private MedicoEspecialidade fkMedEsp;
+	@JoinColumn(name = "fk_medico")
+	private Medico fkMedico;
+	
+	@NotNull(message = "O campo não pode ser nulo")
+	@ManyToOne
+	@JoinColumn(name = "fk_especialidade")
+	private Especialidade fkEspecialidade;
 	
 	@NotNull
 	@Column(name = "data_hora")
@@ -51,16 +54,24 @@ public class Consulta {
 		return fkPaciente;
 	}
 
+	public Medico getFkMedico() {
+		return fkMedico;
+	}
+
+	public void setFkMedico(Medico fkMedico) {
+		this.fkMedico = fkMedico;
+	}
+
+	public Especialidade getFkEspecialidade() {
+		return fkEspecialidade;
+	}
+
+	public void setFkEspecialidade(Especialidade fkEspecialidade) {
+		this.fkEspecialidade = fkEspecialidade;
+	}
+
 	public void setFkPaciente(Paciente fkPaciente) {
 		this.fkPaciente = fkPaciente;
-	}
-
-	public MedicoEspecialidade getFkMedEsp() {
-		return fkMedEsp;
-	}
-
-	public void setFkMedEsp(MedicoEspecialidade fkMedEsp) {
-		this.fkMedEsp = fkMedEsp;
 	}
 
 	public Timestamp getDataHora() {

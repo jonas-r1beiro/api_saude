@@ -33,7 +33,7 @@ public class MedicoController {
 	@Operation(description = "Cadastrar um médico")
 	@PostMapping
 	@Transactional
-	public ResponseEntity<DadosDetalhamentoMedico> cadastrar(@RequestBody @Valid DadosCadastroMedico dados){
+	public ResponseEntity<DadosDetalhamentoMedico> cadastrar(@RequestBody @Valid DadosCadastroMedico dados){		
 		return medicoService.cadastro(dados);
 	}
 	

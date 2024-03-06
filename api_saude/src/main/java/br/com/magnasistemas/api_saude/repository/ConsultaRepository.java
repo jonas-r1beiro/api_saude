@@ -16,7 +16,7 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 	@Query(value = "SELECT * FROM tb_consulta WHERE fk_paciente = :idPaciente AND DATE(data_hora) = :dataDaConsulta", nativeQuery = true)
 	List<Consulta> consultaPorDia(@Param("idPaciente") Long idPaciente, @Param("dataDaConsulta") Timestamp dataHora);
 
-	@Query(value = "SELECT tc.id, tc.fk_paciente, tc.fk_medico_especialidade, tc.data_hora FROM tb_consulta tc INNER JOIN tb_medico_especialidade tme ON tme.id = tc.fk_medico_especialidade INNER JOIN tb_medico tm ON tme.fk_medico = tm.id WHERE :dataHoraConsulta >= tc.data_hora AND :dataHoraConsulta <= tc.data_hora + INTERVAL '1 hour' AND tm.id = :idMedico", nativeQuery = true)
+	@Query(value = "SELECT tc.id, tc.fk_paciente, tc.fk_medico, tc.fk_especialidade, tc.data_hora FROM tb_consulta tc INNER JOIN tb_medico tm ON tc.fk_medico = tm.id INNER JOIN tb_especialidade te ON tc.fk_especialidade = te.id WHERE :dataHoraConsulta >= tc.data_hora AND :dataHoraConsulta <= tc.data_hora + INTERVAL '1 hour' AND tm.id = :idMedico", nativeQuery = true)
 	List<Consulta> horarioMedico(@Param("idMedico") Long idMedico, @Param("dataHoraConsulta") Timestamp dataHora);
 	
 	@Transactional
