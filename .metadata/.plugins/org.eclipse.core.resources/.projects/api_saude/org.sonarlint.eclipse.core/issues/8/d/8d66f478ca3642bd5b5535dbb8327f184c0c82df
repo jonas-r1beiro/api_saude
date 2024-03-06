@@ -1,13 +1,20 @@
 
-b
-java:S3740C"/Provide the parametrized type for this generic.(¶ÅÂÁ8Œÿý¥á1HÀRMAJORZ
+s	java:S125m"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8Äˆ³©á1HˆRMAJORZ
 CODE_SMELL
-b
-java:S37406"/Provide the parametrized type for this generic.(¶ÅÂÁ8þÓ§á1HòRMAJORZ
+n	java:S125$"<This block of commented-out lines of code should be removed.(åÝª¢8Ùíƒ©á1HÒRMAJORZ
 CODE_SMELL
-b
-java:S3740^"/Provide the parametrized type for this generic.(¶ÅÂÁ8Üãö¥á1H¶RMAJORZ
+s	java:S125("<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8Ùíƒ©á1HÓRMAJORZ
 CODE_SMELL
-b
-java:S3740x"/Provide the parametrized type for this generic.(¶ÅÂÁ8”ëš§á1HŒRMAJORZ
+x
+java:S1128	"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ8Äˆ³©á1H‰RMINORZ
+CODE_SMELL
+s	java:S125d"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8ÌÃ²©á1H„RMAJORZ
+CODE_SMELL
+|
+java:S1128
+"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ8Äˆ³©á1H‹RMINORZ
+CODE_SMELL
+s	java:S125L"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8­Šª©á1HûRMAJORZ
+CODE_SMELL
+n	java:S125T"<This block of commented-out lines of code should be removed.(åÝª¢8­Šª©á1HüRMAJORZ
 CODE_SMELL

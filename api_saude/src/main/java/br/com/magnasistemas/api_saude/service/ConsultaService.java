@@ -38,24 +38,23 @@ public class ConsultaService {
 	@Autowired
 	PacienteRepository pacienteRepository;
 	
-	public ResponseEntity<DadosDetalhamentoConsulta> cadastro (@Valid DadosCadastroConsulta dados){
+	public DadosDetalhamentoConsulta cadastro (@Valid DadosCadastroConsulta dados){
 		if(!medicoRepository.existsById(dados.idMedico())) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		if(!especialidadeRepository.existsById(dados.idEspecialidade())) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		if(!pacienteRepository.existsById(dados.idPaciente())) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
-		//Long idMedico = medicoRepository.getReferenceById(dados.idMedico()).getId();
 		Long idMedico = dados.idMedico();
 		
 		if(!consultaValida(dados.dataHora(), dados.idPaciente(), idMedico)) {
-			return ResponseEntity.status(409).build();
+//			return ResponseEntity.status(409).build();
 		}
 		
 		
@@ -68,41 +67,37 @@ public class ConsultaService {
 		
 		consultaRepository.save(consulta);
 		
-		var uri = org.springframework.web.util.UriComponentsBuilder.fromUriString("consultas/id")
-				.buildAndExpand(consulta.getId()).toUri();
-		
-		return ResponseEntity.created(uri).body(new DadosDetalhamentoConsulta(consulta));
+		return new DadosDetalhamentoConsulta(consulta);
 	}
 	
-	public ResponseEntity<Page<DadosDetalhamentoConsulta>> listar(Pageable pageable){
+	public Page<DadosDetalhamentoConsulta> listar(Pageable pageable){
 		Page<Consulta> pageConsulta = consultaRepository.findAll(pageable);
 		
-		Page<DadosDetalhamentoConsulta> pageDados = pageConsulta.map(DadosDetalhamentoConsulta::new);
+		return pageConsulta.map(DadosDetalhamentoConsulta::new);
 		
-		return ResponseEntity.ok(pageDados);
 	}
 	
-	public ResponseEntity<DadosDetalhamentoConsulta> atualizar (@Valid DadosAtualizarConsulta dados){
+	public DadosDetalhamentoConsulta atualizar (@Valid DadosAtualizarConsulta dados){
 		if(!consultaRepository.existsById(dados.id())) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		if(!medicoRepository.existsById(dados.idMedico())) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		if(!especialidadeRepository.existsById(dados.idEspecialidade())) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		if(!pacienteRepository.existsById(dados.idPaciente())) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		Long idMedico = medicoRepository.getReferenceById(dados.idMedico()).getId();
 		
 		if(!consultaValida(dados.dataHora(), dados.idPaciente(), idMedico)) {
-			return ResponseEntity.status(409).build();
+//			return ResponseEntity.status(409).build();
 		}
 		
 		Consulta consulta = consultaRepository.getReferenceById(dados.id());
@@ -112,27 +107,25 @@ public class ConsultaService {
 		consulta.setFkEspecialidade(especialidadeRepository.getReferenceById(dados.idEspecialidade()));
 		consulta.setDataHora(dados.dataHora());
 		
-		return ResponseEntity.ok(new DadosDetalhamentoConsulta(consulta));
+		return new DadosDetalhamentoConsulta(consulta);
 	}
 	
-	public ResponseEntity<HttpStatus> excluir(Long id){
+	public void excluir(Long id){
 		if(!consultaRepository.existsById(id)) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		consultaRepository.deleteById(id);
-		
-		return ResponseEntity.noContent().build();
 	}
 	
-	public ResponseEntity<DadosDetalhamentoConsulta> detalhar(Long id){
+	public DadosDetalhamentoConsulta detalhar(Long id){
 		if(!consultaRepository.existsById(id)) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		Consulta consulta = consultaRepository.getReferenceById(id);
 		
-		return ResponseEntity.ok(new DadosDetalhamentoConsulta(consulta));
+		return new DadosDetalhamentoConsulta(consulta);
 	}
 	
 	private boolean consultaValida(Timestamp dataHora, Long idPaciente, Long idMedico) {

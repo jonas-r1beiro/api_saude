@@ -34,7 +34,6 @@
     <fullyQualifiedTypeName name="br.com.magnasistemas.api_saude.entity.Consulta"/>
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestControllerAdvice"/>
-    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
     <fullyQualifiedTypeName name="org.springframework.validation.FieldError"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
     <fullyQualifiedTypeName name="jakarta.persistence.EntityNotFoundException"/>
@@ -54,10 +53,11 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
-    <fullyQualifiedTypeName name="br.com.magnasistemas.api_saude.dto.medico.DadosDetalhamentoMedico"/>
     <fullyQualifiedTypeName name="br.com.magnasistemas.api_saude.entity.Medico"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="br.com.magnasistemas.api_saude.repository.EspecialidadeRepository"/>
     <fullyQualifiedTypeName name="br.com.magnasistemas.api_saude.entity.Especialidade"/>
     <fullyQualifiedTypeName name="br.com.magnasistemas.api_saude.dto.especialidade.DadosDetalhamentoEspecialidade"/>
+    <fullyQualifiedTypeName name="br.com.magnasistemas.api_saude.dto.medico.DadosDetalhamentoMedico"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
 </qualifiedTypeNameHistroy>

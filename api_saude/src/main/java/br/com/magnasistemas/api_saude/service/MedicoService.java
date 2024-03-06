@@ -31,13 +31,13 @@ public class MedicoService {
 	@Autowired
 	EspecialidadeRepository especialidadeRepository;
 	
-	public ResponseEntity<DadosDetalhamentoMedico> cadastro (@Valid DadosCadastroMedico dados){
+	public DadosDetalhamentoMedico cadastro (@Valid DadosCadastroMedico dados){
 		if(crmExiste(dados.crm())) {
-			return ResponseEntity.status(409).build();
+//			return ResponseEntity.status(409).build();
 		}
 		
 		if(!especialidadeExiste(dados.especialidades())) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		Medico medico =  new Medico(dados);	
@@ -48,23 +48,20 @@ public class MedicoService {
 			medicoRepository.cadastrarMedEsp(medico.getId(), especialidade);
 		}
 		
-		var uri = org.springframework.web.util.UriComponentsBuilder.fromUriString("medicos/id")
-				.buildAndExpand(medico.getId()).toUri();
-		
-		List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList();
+		List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
 		
 		for (Long especialidade : dados.especialidades()) {
 			listEsp.add(new DadosDetalhamentoEspecialidade(especialidadeRepository.getReferenceById(especialidade)));
 		}
 		
-		return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico, listEsp));
+		return new DadosDetalhamentoMedico(medico, listEsp);
 	}
 	
-	public ResponseEntity<Page<DadosDetalhamentoMedico>> listar(Pageable pageable){
+	public Page<DadosDetalhamentoMedico> listar(Pageable pageable){
 		Page<Medico> pageMedicos = medicoRepository.findAll(pageable);
 		
-		Page<DadosDetalhamentoMedico> pageDados = pageMedicos.map(medico ->{
-			List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList();
+		return pageMedicos.map(medico ->{
+			List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
 			
 			for (Especialidade especialidade : medico.getEspecialidades()) {
 				listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
@@ -72,13 +69,11 @@ public class MedicoService {
 			
 			return new DadosDetalhamentoMedico(medico, listEsp);
 		});
-		
-		return ResponseEntity.ok(pageDados);
 	}
 	
-	public ResponseEntity<DadosDetalhamentoMedico> atualizar (@Valid DadosAtualizarMedico dados){
+	public DadosDetalhamentoMedico atualizar (@Valid DadosAtualizarMedico dados){
 		if(!medicoRepository.existsById(dados.id())) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		Medico medico = medicoRepository.getReferenceById(dados.id());
@@ -86,43 +81,42 @@ public class MedicoService {
 		medico.setNome(dados.nome());
 		
 		if(crmExiste(dados.crm()) && !dados.crm().equals(medico.getCrm())) {
-			return ResponseEntity.status(409).build();
+//			return ResponseEntity.status(409).build();
 		}
 		
 		medico.setCrm(dados.crm());
 		
-		List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList();
+		List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
 		
 		for (Especialidade especialidade : medico.getEspecialidades()) {
 			listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
 		}
 		
-		return ResponseEntity.ok(new DadosDetalhamentoMedico(medico, listEsp));
+		return new DadosDetalhamentoMedico(medico, listEsp);
 	}
 	
-	public ResponseEntity<HttpStatus> excluir(Long id){
+	public void excluir(Long id){
 		if(!medicoRepository.existsById(id)) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		medicoRepository.deleteById(id);
-		
-		return ResponseEntity.noContent().build();
+	
 	}
 	
-	public ResponseEntity<DadosDetalhamentoMedico> detalhar(Long id){
+	public DadosDetalhamentoMedico detalhar(Long id){
 		if(!medicoRepository.existsById(id)) {
-			return ResponseEntity.notFound().build();
+//			return ResponseEntity.notFound().build();
 		}
 		
 		Medico medico = medicoRepository.getReferenceById(id);
 		
-		List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList();
+		List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
 		
 		for (Especialidade especialidade : medico.getEspecialidades()) {
 			listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
 		}
-		return ResponseEntity.ok(new DadosDetalhamentoMedico(medico, listEsp));
+		return new DadosDetalhamentoMedico(medico, listEsp);
 	}
 	
 	

@@ -34,33 +34,34 @@ public class MedicoController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoMedico> cadastrar(@RequestBody @Valid DadosCadastroMedico dados){		
-		return medicoService.cadastro(dados);
+		return ResponseEntity.status(201).body(medicoService.cadastro(dados));
 	}
 	
 	@Operation(description = "Lista todas os médicos")
 	@GetMapping
 	public ResponseEntity<Page<DadosDetalhamentoMedico>> listar(
 			@PageableDefault(size = 100, page = 0, sort = "id") Pageable pageable){
-		return medicoService.listar(pageable);
+		return ResponseEntity.ok(medicoService.listar(pageable));
 	}
 	
 	@Operation(description = "Atualiza um registro de médico")
 	@PutMapping
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoMedico> atualizar (@RequestBody @Valid DadosAtualizarMedico dados){
-		return medicoService.atualizar(dados);
+		return ResponseEntity.ok(medicoService.atualizar(dados));
 	}
 	
 	@Operation(description = "Delete em um regisro de médico")
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<HttpStatus> excluir(@PathVariable Long id){
-		return medicoService.excluir(id);
+		medicoService.excluir(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Operation(description = "Detalhar um registro de especialidade")
 	@GetMapping("/{id}")
 	public ResponseEntity<DadosDetalhamentoMedico> detalhar(@PathVariable Long id){
-		return medicoService.detalhar(id);
+		return ResponseEntity.ok(medicoService.detalhar(id));
 	}
 }

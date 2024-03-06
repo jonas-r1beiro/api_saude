@@ -34,33 +34,34 @@ public class PacienteController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoPaciente> cadastrar(@RequestBody @Valid DadosCadastroPaciente dados){
-		return pacienteService.cadastro(dados);
+		return ResponseEntity.status(201).body(pacienteService.cadastro(dados));
 	}
 	
 	@Operation(description = "Lista todas os pacientes")
 	@GetMapping
 	public ResponseEntity<Page<DadosDetalhamentoPaciente>> listar(
 			@PageableDefault(size = 100, page = 0, sort = "id") Pageable pageable){
-		return pacienteService.listar(pageable);
+		return ResponseEntity.ok(pacienteService.listar(pageable));
 	}
 	
 	@Operation(description = "Atualiza um registro de paciente")
 	@PutMapping
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoPaciente> atualizar (@RequestBody @Valid DadosAtualizarPaciente dados){
-		return pacienteService.atualizar(dados);
+		return ResponseEntity.ok(pacienteService.atualizar(dados));
 	}
 	
 	@Operation(description = "Delete em um regisro de paciente")
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<HttpStatus> excluir(@PathVariable Long id){
-		return pacienteService.excluir(id);
+		pacienteService.excluir(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Operation(description = "Detalhar um registro de paciente")
 	@GetMapping("/{id}")
 	public ResponseEntity<DadosDetalhamentoPaciente> detalhar(@PathVariable Long id){
-		return pacienteService.detalhar(id);
+		return ResponseEntity.ok(pacienteService.detalhar(id));
 	}
 }

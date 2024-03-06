@@ -1,8 +1,35 @@
 
-s	java:S1256"<This block of commented-out lines of code should be removed.(şŞœ´ÿÿÿÿÿ8ÜÕ‰¨á1H…RMAJORZ
-CODE_SMELL
-o	java:S125’"<This block of commented-out lines of code should be removed.(ô“ØÉ8½Ç˜¨á1HRMAJORZ
-CODE_SMELL
 z
-java:S1126”"AReplace this if-then-else statement by a single return statement.(ô³ÉÂüÿÿÿÿ8­ì˜¨á1HRMINORZ
+java:S1126"AReplace this if-then-else statement by a single return statement.(ô³ÉÂüÿÿÿÿ8­ì˜¨á1H‘RMINORZ
+CODE_SMELL
+s	java:S1253"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8µˆû©á1HƒRMAJORZ
+CODE_SMELL
+n	java:S1259"<This block of commented-out lines of code should be removed.(åİª¢8µˆû©á1H„RMAJORZ
+CODE_SMELL
+s	java:S125/"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8µˆû©á1H‚RMAJORZ
+CODE_SMELL
+o	java:S125‹"<This block of commented-out lines of code should be removed.(ô“ØÉ8½Ç˜¨á1H’RMAJORZ
+CODE_SMELL
+s	java:S125^"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8ŒÑ…ªá1H›RMAJORZ
+CODE_SMELL
+s	java:S125V"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8ŒÑ…ªá1H™RMAJORZ
+CODE_SMELL
+s	java:S125R"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8ŒÑ…ªá1H˜RMAJORZ
+CODE_SMELL
+s	java:S125+"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8µˆû©á1HRMAJORZ
+CODE_SMELL
+s	java:S125s"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8ÂÇŠªá1H¥RMAJORZ
+CODE_SMELL
+n	java:S125d"<This block of commented-out lines of code should be removed.(åİª¢8èä†ªá1H¡RMAJORZ
+CODE_SMELL
+s	java:S125Z"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8ŒÑ…ªá1HšRMAJORZ
+CODE_SMELL
+s	java:S125{"<This block of commented-out lines of code should be removed.(‚Î†üÿÿÿÿ8ØÙŒªá1H¹RMAJORZ
+CODE_SMELL
+x
+java:S1128
+"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ8ØÙŒªá1HºRMINORZ
+CODE_SMELL
+|
+java:S1128"DRemove this unused import 'org.springframework.http.ResponseEntity'.(¶¯ø¦úÿÿÿÿ8ØÙŒªá1H¼RMINORZ
 CODE_SMELL

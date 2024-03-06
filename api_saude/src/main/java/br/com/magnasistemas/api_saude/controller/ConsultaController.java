@@ -34,33 +34,35 @@ public class ConsultaController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoConsulta> cadastrar(@RequestBody @Valid DadosCadastroConsulta dados){
-		return consultaService.cadastro(dados);
+		return ResponseEntity.status(201).body(consultaService.cadastro(dados));
 	}
 	
 	@Operation(description = "Lista todas as consultas")
 	@GetMapping
 	public ResponseEntity<Page<DadosDetalhamentoConsulta>> listar(
 			@PageableDefault(size = 100, page = 0, sort = "id") Pageable pageable){
-		return consultaService.listar(pageable);
+		return ResponseEntity.ok(consultaService.listar(pageable));
 	}
 	
 	@Operation(description = "Atualiza um registro de consulta")
 	@PutMapping
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoConsulta> atualizar (@RequestBody @Valid DadosAtualizarConsulta dados){
-		return consultaService.atualizar(dados);
+		return ResponseEntity.ok(consultaService.atualizar(dados));
 	}
 	
 	@Operation(description = "Delete em um regisro de consulta")
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<HttpStatus> excluir(@PathVariable Long id){
-		return consultaService.excluir(id);
+		consultaService.excluir(id);
+		
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Operation(description = "Detalhar um registro de consulta")
 	@GetMapping("/{id}")
 	public ResponseEntity<DadosDetalhamentoConsulta> detalhar(@PathVariable Long id){
-		return consultaService.detalhar(id);
+		return ResponseEntity.ok(consultaService.detalhar(id));
 	}
 }

@@ -34,34 +34,35 @@ public class EspecialidadeController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoEspecialidade> cadastrar(@RequestBody @Valid DadosCadastroEspecialidade dados){
-		return especialidadeService.cadastro(dados);
+		return ResponseEntity.status(201).body(especialidadeService.cadastro(dados));
 	}
 	
 	@Operation(description = "Lista todas as especialidedes")
 	@GetMapping
 	public ResponseEntity<Page<DadosDetalhamentoEspecialidade>> listar(
 			@PageableDefault(size = 100, page = 0, sort = "id") Pageable pageable){
-		return especialidadeService.listar(pageable);
+		return ResponseEntity.ok(especialidadeService.listar(pageable));
 	}
 	
 	@Operation(description = "Atualiza um registro de especialide")
 	@PutMapping
 	@Transactional
 	public ResponseEntity<DadosDetalhamentoEspecialidade> atualizar (@RequestBody @Valid DadosAtualizarEspecialidade dados){
-		return especialidadeService.atualizar(dados);
+		return ResponseEntity.ok(especialidadeService.atualizar(dados));
 	}
 	
 	@Operation(description = "Delete em um regisro de especialidade")
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<HttpStatus> excluir(@PathVariable Long id){
-		return especialidadeService.excluir(id);
+		especialidadeService.excluir(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Operation(description = "Detalhar um registro de especialidade")
 	@GetMapping("/{id}")
 	public ResponseEntity<DadosDetalhamentoEspecialidade> detalhar(@PathVariable Long id){
-		return especialidadeService.detalhar(id);
+		return ResponseEntity.ok(especialidadeService.detalhar(id));
 	}
 }
 
