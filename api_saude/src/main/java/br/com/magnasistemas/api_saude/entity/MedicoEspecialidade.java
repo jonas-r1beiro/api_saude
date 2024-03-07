@@ -7,17 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "tb_medico_especialidade")
 public class MedicoEspecialidade {
-	
-
-	
-	public MedicoEspecialidade() {}
 	
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)

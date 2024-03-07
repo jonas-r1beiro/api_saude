@@ -33,7 +33,7 @@ import br.com.magnasistemas.api_saude.repository.EspecialidadeRepository;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @SpringBootTest(classes = ApiSaudeApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
-public class EspecialidadeControllerTest {
+class EspecialidadeControllerTest {
 	
 	@Autowired
 	private TestRestTemplate restTemplate;

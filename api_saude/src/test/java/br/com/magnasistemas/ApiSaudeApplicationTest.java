@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.magnasistemas.api_saude.ApiSaudeApplication;
 
-public class ApiSaudeApplicationTest {
+class ApiSaudeApplicationTest {
 
 	private static final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private static final PrintStream originalOut = System.out;

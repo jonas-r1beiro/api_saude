@@ -27,8 +27,6 @@ Usrc/main/java/br/com/magnasistemas/api_saude/dto/paciente/DadosAtualizarPacient
 Osrc/main/java/br/com/magnasistemas/api_saude/controller/PacienteController.java,8\6\86986bbe3b77627a90b6850594d531f3808e33b5
 q
 Asrc/main/java/br/com/magnasistemas/api_saude/entity/Consulta.java,6\9\69a4ed3b2e140a9e95b4158c5d43c35e8aca38e8
-l
-<src/main/java/br/com/magnasistemas/api_saude/enums/Sexo.java,a\e\aef07d926cdfb9433756316ad27fc7b95019f335
 q
 Asrc/main/java/br/com/magnasistemas/api_saude/entity/Paciente.java,0\5\05c0b4522b430cc23ce14885be12dd637789b89d
 ˆ
@@ -129,3 +127,13 @@ w
 Gsrc/test/java/br/com/magnasistemas/controller/MedicoControllerTest.java,2\5\25d47538d8ae095d7a8fd7317fca6f2b805d9137
 y
 Isrc/test/java/br/com/magnasistemas/controller/ConsultaControllerTest.java,1\b\1b68144c772e91134fb5395bf46e14d92f7dbfa7
+¡
+qsrc/main/java/br/com/magnasistemas/api_saude/validators/interfaces/consulta/HorarioPossivelConsultaValidator.java,7\7\77a2f690e52c3d1f03fd9c7f9d68a25669133d97
+¡
+qsrc/main/java/br/com/magnasistemas/api_saude/validators/interfaces/paciente/ExistenciaPacientePorIdValidator.java,8\f\8f78ea0907b40ecddf3249fe7e67be68ca935212
+«
+{src/main/java/br/com/magnasistemas/api_saude/validators/interfaces/especialidade/ExistenciaEspecialidadePorIdValidator.java,b\7\b7c66542c8bc32c928e4125b16c8ab87f9aab7fb
+¦
+vsrc/main/java/br/com/magnasistemas/api_saude/validators/implementers/especialidade/ValidadorEspecialidadeDetalhar.java,e\e\eeedfc2e01cdfb543fdb8395f1e02b230e7138e3
+¥
+usrc/main/java/br/com/magnasistemas/api_saude/validators/interfaces/especialidade/AtualizarEspecialidadeValidator.java,5\c\5cdfdffd39ac610d1134577d26f8a144cfbcc3ab

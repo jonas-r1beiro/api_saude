@@ -47,7 +47,7 @@ import br.com.magnasistemas.api_saude.repository.PacienteRepository;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @SpringBootTest(classes = ApiSaudeApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
-public class ConsultaControllerTest {
+class ConsultaControllerTest {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
