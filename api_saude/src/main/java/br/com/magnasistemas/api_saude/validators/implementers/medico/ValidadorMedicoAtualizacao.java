@@ -26,7 +26,8 @@ public class ValidadorMedicoAtualizacao implements AtualizarMedicoValidator {
 		
 		Medico medico = medicoRepository.getReferenceById(dados.id());
 		
-		if(validadorCrm.crmExiste(dados.crm()) && !dados.crm().equals(medico.getCrm())) {
+		if(validadorCrm.crmExiste(dados.crm()) 
+				&& !dados.crm().equals(medico.getCrm())) {
 			throw new ArgumentoInvalidoException("Argumento inválido, o médico já existe!");
 		}
 		

@@ -68,9 +68,11 @@ public class MedicoService {
 		return pageMedicos.map(medico ->{
 			List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
 			
-			for (Especialidade especialidade : medico.getEspecialidades()) {
-				listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
-			}
+			
+				for (Especialidade especialidade : medico.getEspecialidades()) {
+					listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
+				}				
+			
 			
 			return new DadosDetalhamentoMedico(medico, listEsp);
 		});
@@ -87,13 +89,22 @@ public class MedicoService {
 		
 		medico.setCrm(dados.crm());
 		
-		List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
+		List<Especialidade> listEsp = new ArrayList<>();
 		
-		for (Especialidade especialidade : medico.getEspecialidades()) {
-			listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
+		for (Long idEspecialidade : dados.especialidades()) {
+			Especialidade esp = especialidadeRepository.getReferenceById(idEspecialidade);
+			
+			listEsp.add(esp);
 		}
 		
-		return new DadosDetalhamentoMedico(medico, listEsp);
+		medico.setEspecialidades(listEsp);
+		
+		List<DadosDetalhamentoEspecialidade> listEspDet = new ArrayList<>();
+		for (Especialidade especialidade : medico.getEspecialidades()) {
+			listEspDet.add(new DadosDetalhamentoEspecialidade(especialidade));
+		}
+		
+		return new DadosDetalhamentoMedico(medico, listEspDet);
 	}
 	
 	public void excluir(Long id){
@@ -113,6 +124,7 @@ public class MedicoService {
 		for (Especialidade especialidade : medico.getEspecialidades()) {
 			listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
 		}
+		
 		return new DadosDetalhamentoMedico(medico, listEsp);
 	}
 }

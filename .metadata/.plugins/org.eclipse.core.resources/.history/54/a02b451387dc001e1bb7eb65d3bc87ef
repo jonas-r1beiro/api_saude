@@ -1,0 +1,105 @@
+package br.com.magnasistemas.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestClientException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.sql.Date;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import br.com.magnasistemas.api_saude.ApiSaudeApplication;
+import br.com.magnasistemas.api_saude.dto.especialidade.DadosDetalhamentoEspecialidade;
+import br.com.magnasistemas.api_saude.dto.paciente.DadosAtualizarPaciente;
+import br.com.magnasistemas.api_saude.dto.paciente.DadosCadastroPaciente;
+import br.com.magnasistemas.api_saude.dto.paciente.DadosDetalhamentoPaciente;
+import br.com.magnasistemas.api_saude.exception.ArgumentoInvalidoException;
+import br.com.magnasistemas.api_saude.repository.PacienteRepository;
+
+@RunWith(SpringRunner.class)
+@ActiveProfiles("test")
+@SpringBootTest(classes = ApiSaudeApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
+class PacienteControllerTest {
+
+	@Autowired
+	private TestRestTemplate restTemplate;
+	
+	@LocalServerPort
+	private int randomServerPort;
+	
+	@Autowired
+	private PacienteRepository pacienteRepository;
+	
+	private String urlBase = null;
+	
+	@BeforeEach
+	void criarUrlBase() {
+		urlBase = "http://localhost:" + randomServerPort + "/pacientes";
+	}
+	
+	@AfterEach
+	void apagarRegistro() {
+		pacienteRepository.deleteAllAndReseteSequence();
+	}
+	
+	@Test
+	void criarPacienteComSucesso() {
+		DadosCadastroPaciente dados = new DadosCadastroPaciente("José", new Date(1355270400000L), "11111111111", "M", null, null);
+		
+		ResponseEntity<DadosDetalhamentoPaciente> response = restTemplate.postForEntity(urlBase, dados, 
+				DadosDetalhamentoPaciente.class);
+		
+		assertEquals(HttpStatus.CREATED, response.getStatusCode());
+	}
+	
+	@Test
+	void criarPacienteComCpfRepetido() {
+		DadosCadastroPaciente dados1 = new DadosCadastroPaciente("José", new Date(1355270400000L), "11111111111", "M", null, null);
+		
+		restTemplate.postForEntity(urlBase, dados1, 
+				DadosDetalhamentoPaciente.class);
+		
+		DadosCadastroPaciente dados2 = new DadosCadastroPaciente("José", new Date(1355270400000L), "11111111111", "M", null, null);
+		
+		ResponseEntity<ArgumentoInvalidoException> response = null;
+		
+		try{
+			response = restTemplate.postForEntity(urlBase, dados2, 
+					ArgumentoInvalidoException.class);
+		}catch(RestClientException ex) {
+			response = ResponseEntity.badRequest().build();
+		}
+		
+		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+	}
+	
+	@Test
+	void listarPacientesComSucesso() {
+		ResponseEntity<DadosDetalhamentoPaciente> response = restTemplate.getForEntity(urlBase,
+				DadosDetalhamentoPaciente.class);
+		
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+	}
+	
+	@Test
+	void atualizarComIdInexistente(){
+		DadosAtualizarPaciente dadosAtualizar = new DadosAtualizarPaciente(1L, "josé", new Date(1355270400000L), "11111111111", "M", "", "");;
+		restTemplate.exchange(
+				urlBase, HttpMethod.PUT,
+				new HttpEntity<>(dadosAtualizar), DadosDetalhamentoPaciente.class, Void.class);
+	}
+}

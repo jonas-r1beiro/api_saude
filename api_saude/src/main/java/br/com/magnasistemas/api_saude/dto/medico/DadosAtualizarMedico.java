@@ -17,7 +17,7 @@ public record DadosAtualizarMedico(
 		String nome,
 		@Pattern(regexp = "^\\d{6}$", message = "O CRM deve conter 6 números")
 		String crm,
-		@NotNull
+		@NotNull(message = "A lista de especialidades não pode ser nula")
 		List<Long> especialidades
 		) {
 

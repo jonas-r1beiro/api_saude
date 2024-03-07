@@ -28,7 +28,7 @@ public record DadosDetalhamentoConsulta(
 	}
 	
 	
-	static private List<DadosDetalhamentoEspecialidade> convertToEspDto(Consulta consulta) {
+	private static List<DadosDetalhamentoEspecialidade> convertToEspDto(Consulta consulta) {
 		List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
 		
 		for (Especialidade especialidade : consulta.getFkMedico().getEspecialidades()) {
@@ -37,5 +37,4 @@ public record DadosDetalhamentoConsulta(
 		
 		return listEsp;
 	}
-
 }

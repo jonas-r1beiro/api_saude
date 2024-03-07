@@ -15,16 +15,14 @@ import jakarta.validation.constraints.Positive;
 @Table(name = "tb_medico_especialidade")
 public class MedicoEspecialidade {
 	
-	public MedicoEspecialidade(Medico medico, Especialidade especialidade) {
-		this.fkMedico = medico;
-		this.fkEspecialidade = especialidade;
-	}
+
 	
 	public MedicoEspecialidade() {}
 	
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
+
 	
 	@NotNull(message = "O campo não pode ser nulo")
 	@ManyToOne
@@ -35,25 +33,5 @@ public class MedicoEspecialidade {
 	@ManyToOne
 	@JoinColumn(name = "fk_especialidade")
 	Especialidade fkEspecialidade;
-
-	public Medico getFkMedico() {
-		return fkMedico;
-	}
-
-	public void setFkMedico(Medico fkMedico) {
-		this.fkMedico = fkMedico;
-	}
-
-	public Especialidade getFkEspecialidade() {
-		return fkEspecialidade;
-	}
-
-	public void setFkEspecialidade(Especialidade fkEspecialidade) {
-		this.fkEspecialidade = fkEspecialidade;
-	}
-
-	public Long getId() {
-		return id;
-	}
 
 }

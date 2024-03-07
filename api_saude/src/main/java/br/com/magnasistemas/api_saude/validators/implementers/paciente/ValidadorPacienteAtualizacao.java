@@ -24,7 +24,8 @@ public class ValidadorPacienteAtualizacao implements AtualizarPacienteValidator{
 		
 		Paciente paciente = pacienteRepository.getReferenceById(dados.id());
 		
-		if(pacienteRepository.existsByCpf(dados.cpf()) && !dados.cpf().equals(paciente.getCpf())) {
+		if(pacienteRepository.existsByCpf(dados.cpf()) 
+				&& !dados.cpf().equals(paciente.getCpf())) {
 			throw new ArgumentoInvalidoException("O CPF passado já pertence a outro paciente!");
 		}
 	}

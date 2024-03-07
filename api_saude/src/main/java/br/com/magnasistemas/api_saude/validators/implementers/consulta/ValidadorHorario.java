@@ -27,7 +27,11 @@ public class ValidadorHorario implements HorarioPossivelConsultaValidator {
 		List<Consulta> consultaBanco1 = consultaRepository.consultaPorDia(idPaciente, dataHora);
 		List<Consulta> consultaBanco2 = consultaRepository.horarioMedico(idMedico, dataHora);
 		
-		if(horaConsulta + 1 >= 18 || horaConsulta < 9 || diaSemana == 6 || diaSemana == 7 || !consultaBanco1.isEmpty()
+		if(horaConsulta + 1 >= 18 
+				|| horaConsulta < 9 
+				|| diaSemana == 6 
+				|| diaSemana == 7 
+				|| !consultaBanco1.isEmpty()
 				||  !consultaBanco2.isEmpty()) {
 			throw new ArgumentoInvalidoException("Não é possível marcar uma consulta para essa data e horário!");
 		}

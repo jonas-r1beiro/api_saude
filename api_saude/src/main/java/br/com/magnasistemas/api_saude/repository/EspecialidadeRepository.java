@@ -11,6 +11,6 @@ public interface EspecialidadeRepository extends JpaRepository<Especialidade, Lo
 
 	@Transactional
 	@Modifying
-	@Query(value = "DELETE FROM TB_ESPECIALIDADE; ALTER SEQUENCE TB_ESPECIALIDADE_id_seq RESTART WITH 1", nativeQuery = true)
+	@Query(value = "DELETE FROM TB_MEDICO_ESPECIALIDADE; ALTER SEQUENCE TB_MEDICO_ESPECIALIDADE_id_seq RESTART WITH 1 ; DELETE FROM TB_ESPECIALIDADE; ALTER SEQUENCE TB_ESPECIALIDADE_id_seq RESTART WITH 1", nativeQuery = true)
 	void deleteAllAndReseteSequence();
 }

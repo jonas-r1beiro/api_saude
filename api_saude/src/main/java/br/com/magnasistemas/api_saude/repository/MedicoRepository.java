@@ -19,6 +19,6 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
 	
 	@Transactional
 	@Modifying
-	@Query(value = "DELETE FROM TB_MEDICO; ALTER SEQUENCE TB_MEDICO_id_seq RESTART WITH 1", nativeQuery = true)
+	@Query(value = "DELETE FROM TB_MEDICO_ESPECIALIDADE; ALTER SEQUENCE TB_MEDICO_ESPECIALIDADE_id_seq RESTART WITH 1 ; DELETE FROM TB_MEDICO; ALTER SEQUENCE TB_MEDICO_id_seq RESTART WITH 1", nativeQuery = true)
 	void deleteAllAndReseteSequence();
 }
