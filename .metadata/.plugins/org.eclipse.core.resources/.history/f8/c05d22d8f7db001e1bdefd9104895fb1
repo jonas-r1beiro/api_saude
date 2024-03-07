@@ -1,0 +1,14 @@
+package br.com.magnasistemas.api_saude.validators.implementers.especialidade;
+
+import br.com.magnasistemas.api_saude.dto.especialidade.DadosAtualizarEspecialidade;
+import br.com.magnasistemas.api_saude.validators.interfaces.especialidade.AtualizarEspecialidadeValidator;
+
+public class ValidadorEspecialidadeAtualizacao implements AtualizarEspecialidadeValidator {
+
+	@Override
+	public void validador(DadosAtualizarEspecialidade dados) {
+		
+		
+	}
+
+}

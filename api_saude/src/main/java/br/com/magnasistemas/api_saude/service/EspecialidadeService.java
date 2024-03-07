@@ -10,6 +10,9 @@ import br.com.magnasistemas.api_saude.dto.especialidade.DadosCadastroEspecialida
 import br.com.magnasistemas.api_saude.dto.especialidade.DadosDetalhamentoEspecialidade;
 import br.com.magnasistemas.api_saude.entity.Especialidade;
 import br.com.magnasistemas.api_saude.repository.EspecialidadeRepository;
+import br.com.magnasistemas.api_saude.validators.implementers.especialidade.ValidadorEspecialidadeAtualizacao;
+import br.com.magnasistemas.api_saude.validators.implementers.especialidade.ValidadorEspecialidadeDelete;
+import br.com.magnasistemas.api_saude.validators.implementers.especialidade.ValidadorEspecialidadeDetalhar;
 import jakarta.validation.Valid;
 
 @Service
@@ -19,6 +22,15 @@ public class EspecialidadeService {
 	
 	@Autowired
 	EspecialidadeRepository especialidadeRepository;
+	
+	@Autowired
+	ValidadorEspecialidadeAtualizacao validadorAtualizacao;
+	
+	@Autowired
+	ValidadorEspecialidadeDelete validadorDelete;
+	
+	@Autowired
+	ValidadorEspecialidadeDetalhar validadorDetalhar;
 
 	public DadosDetalhamentoEspecialidade cadastro (@Valid DadosCadastroEspecialidade dados){
 		Especialidade especialidade =  new Especialidade(dados);	
@@ -35,9 +47,7 @@ public class EspecialidadeService {
 	}
 	
 	public DadosDetalhamentoEspecialidade atualizar (@Valid DadosAtualizarEspecialidade dados){
-		if(!especialidadeRepository.existsById(dados.id())) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorAtualizacao.validador(dados);
 		
 		Especialidade especialidade = especialidadeRepository.getReferenceById(dados.id());
 		
@@ -47,17 +57,13 @@ public class EspecialidadeService {
 	}
 	
 	public void excluir(Long id){
-		if(!especialidadeRepository.existsById(id)) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorDelete.validador(id);
 		
 		especialidadeRepository.deleteById(id);
 	}
 	
 	public DadosDetalhamentoEspecialidade detalhar(Long id){
-		if(!especialidadeRepository.existsById(id)) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorDetalhar.validador(id);
 		
 		Especialidade especialidade = especialidadeRepository.getReferenceById(id);
 		

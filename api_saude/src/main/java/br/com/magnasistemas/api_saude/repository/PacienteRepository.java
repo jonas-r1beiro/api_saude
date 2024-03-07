@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.magnasistemas.api_saude.entity.Paciente;
 
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
+	
+	boolean existsByCpf(String cpf);
 
 	@Transactional
 	@Modifying

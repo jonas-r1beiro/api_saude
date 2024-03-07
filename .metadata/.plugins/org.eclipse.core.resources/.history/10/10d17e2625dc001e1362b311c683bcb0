@@ -1,0 +1,16 @@
+package br.com.magnasistemas.api_saude.validators.implementers.medico;
+
+import org.springframework.stereotype.Component;
+
+import br.com.magnasistemas.api_saude.validators.interfaces.medico.ExistenciaMedicoPorIdValidator;
+
+@Component
+public class ValidadorMedicoExistencia implements ExistenciaMedicoPorIdValidator {
+
+	@Override
+	public void validador(Long id) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

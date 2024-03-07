@@ -1,0 +1,14 @@
+package br.com.magnasistemas.api_saude.validators.implementers.medico;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class ValidadorEspecialidadeExistencia {
+
+	@Autowired
+	MedicoRepository medicoRepository;
+	
+	private boolean crmExiste(String crm) {
+		return  medicoRepository.existsByCrm(crm);
+	}
+}

@@ -1,0 +1,8 @@
+package br.com.magnasistemas.api_saude.validators.implementers.medico;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class ValidadorCrm {
+
+}

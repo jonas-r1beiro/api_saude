@@ -1,0 +1,18 @@
+package br.com.magnasistemas.api_saude.validators.implementers.consulta;
+
+import org.springframework.stereotype.Component;
+
+import br.com.magnasistemas.api_saude.validators.interfaces.consulta.ExistenciaConsultaPorIdValidator;
+
+@Component
+public class ValidadorConsultaExistencia implements ExistenciaConsultaPorIdValidator {
+
+	@Override
+	public void validador(Long id) {
+		if(!consultaRepository.existsById(id)) {
+//			return ResponseEntity.notFound().build();
+		}
+
+	}
+
+}

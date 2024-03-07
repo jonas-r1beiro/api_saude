@@ -1,0 +1,6 @@
+package br.com.magnasistemas.api_saude.validators.interfaces.especialidade;
+
+public class ExistenciaEspecialidadePorIdValidator {
+
+	void validador(Long id);
+}

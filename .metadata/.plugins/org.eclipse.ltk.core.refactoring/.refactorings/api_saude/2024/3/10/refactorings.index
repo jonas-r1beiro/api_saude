@@ -2,3 +2,17 @@
 1709654019836	Rename package 'br.com.magnasistemas.api_saude.dto.medicoEspecialidade'
 1709743250067	Delete element
 1709743254605	Delete element
+1709755315594	Move compilation unit
+1709755343166	Move compilation unit
+1709755442772	Move compilation unit
+1709755451718	Move compilation unit
+1709755556769	Rename type 'ValidadorPacienteDeletar'
+1709755599096	Rename type 'DeletarPaciente'
+1709756032884	Delete element
+1709756078199	Rename type 'DeletarPacienteValidator'
+1709756220731	Rename type 'ExistenciaPacienciaValidatorPorId'
+1709756969968	Rename type 'ExistenciaPacienteValidatorPorId'
+1709757144003	Rename type 'ValidadorEspecialidadeAtualizacao'
+1709757161297	Rename type 'ValidadorEspecialidadaeAtualizacao'
+1709778273831	Rename type 'HorarioPossivelConsulta'
+1709779191510	Delete element

@@ -1,0 +1,19 @@
+package br.com.magnasistemas.api_saude.validators.implementers.especialidade;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.magnasistemas.api_saude.repository.EspecialidadeRepository;
+import br.com.magnasistemas.api_saude.validators.interfaces.especialidade.ExistenciaEspecialidadePorIdValidator;
+
+public class ValidadorEspecialidadeAtualizacao implements ExistenciaEspecialidadePorIdValidator {
+
+	@Autowired
+	EspecialidadeRepository especialidadeRepository;
+	
+	@Override
+	public void validador(Long id) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

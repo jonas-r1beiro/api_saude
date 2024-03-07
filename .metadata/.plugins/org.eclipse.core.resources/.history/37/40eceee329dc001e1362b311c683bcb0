@@ -1,0 +1,7 @@
+package br.com.magnasistemas.api_saude.validators.implementers.consulta;
+
+import br.com.magnasistemas.api_saude.validators.interfaces.consulta.HorarioPossivelConsultaValidator;
+
+public interface ValidadorHorario extends HorarioPossivelConsultaValidator {
+
+}

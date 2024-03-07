@@ -1,16 +1,4 @@
 
-b
-java:S3740#"/Provide the parametrized type for this generic.(¶ÅÂÁ8¶ÛĞ§á1HÅRMAJORZ
-CODE_SMELL
 x
-java:S1124""EReorder the modifiers to comply with the Java Language Specification.(üÇ×Â8©ß§á1HüRMINORZ
-CODE_SMELL
-‹
-java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8©ß§á1HÿRMINORZ
-CODE_SMELL
-|
-java:S1128"IRemove this unused import 'br.com.magnasistemas.api_saude.entity.Medico'.(š£­ò8©ß§á1HRMINORZ
-CODE_SMELL
-‘
-java:S1128"^Remove this unused import 'br.com.magnasistemas.api_saude.repository.EspecialidadeRepository'.(ôŠË¢8©ß§á1HƒRMINORZ
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(üÇ×Â8©ß§á1HÁRMINORZ
 CODE_SMELL

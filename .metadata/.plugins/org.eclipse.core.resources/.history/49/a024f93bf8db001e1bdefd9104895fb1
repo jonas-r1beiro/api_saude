@@ -1,0 +1,6 @@
+package br.com.magnasistemas.api_saude.validators.interfaces.paciente;
+
+public interface ExistenciaPacienteValidatorPorId {
+
+	void validador(Long id);
+}

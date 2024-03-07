@@ -1,0 +1,20 @@
+package br.com.magnasistemas.api_saude.validators.implementers.paciente;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.magnasistemas.api_saude.dto.paciente.DadosCadastroPaciente;
+import br.com.magnasistemas.api_saude.repository.PacienteRepository;
+import br.com.magnasistemas.api_saude.validators.interfaces.paciente.CadastrarPacienteValidator;
+
+public class ValidadorPacienteCadastro implements CadastrarPacienteValidator {
+	
+	@Autowired
+	PacienteRepository pacienteRepository;
+
+	@Override
+	public void validador(DadosCadastroPaciente dados) {
+		
+		
+	}
+
+}

@@ -1,0 +1,13 @@
+package br.com.magnasistemas.api_saude.validators.implementers.paciente;
+
+import br.com.magnasistemas.api_saude.validators.interfaces.paciente.ExistenciaPacienciaValidatorPorId;
+
+public class ValidadorPacienteDetalhar implements ExistenciaPacienciaValidatorPorId {
+
+	@Override
+	public void validador(Long id) {
+		
+
+	}
+
+}

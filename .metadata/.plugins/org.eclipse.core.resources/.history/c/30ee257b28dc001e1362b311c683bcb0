@@ -1,0 +1,13 @@
+package br.com.magnasistemas.api_saude.validators.implementers.consulta;
+
+import br.com.magnasistemas.api_saude.validators.interfaces.consulta.ExistenciaConsultaPorIdValidator;
+
+public class ValidadorConsultaExistencia implements ExistenciaConsultaPorIdValidator {
+
+	@Override
+	public void validador(Long id) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

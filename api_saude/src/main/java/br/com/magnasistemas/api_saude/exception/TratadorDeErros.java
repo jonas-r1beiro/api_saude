@@ -1,10 +1,7 @@
 package br.com.magnasistemas.api_saude.exception;
 
-import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -18,16 +15,11 @@ public class TratadorDeErros {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<List<DadosErroValidacao>> tratarErro400(MethodArgumentNotValidException ex) {
-		var erros = ex.getFieldErrors();
+	@ExceptionHandler(ArgumentoInvalidoException.class)
+	public ResponseEntity<String> tratarErro400(ArgumentoInvalidoException ex) {
+		var erros = ex.getMessage();
 		
-		return ResponseEntity.badRequest().body(erros.stream().map(DadosErroValidacao::new).toList());
+		return ResponseEntity.badRequest().body(erros);
 	}
 	
-	private record DadosErroValidacao(String campo, String mensagem) {
-		public DadosErroValidacao(FieldError erro) {
-			this(erro.getField(), erro.getDefaultMessage());
-		}
-	}
 }

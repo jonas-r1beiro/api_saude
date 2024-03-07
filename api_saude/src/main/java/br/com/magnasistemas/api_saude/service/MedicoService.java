@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.magnasistemas.api_saude.dto.especialidade.DadosDetalhamentoEspecialidade;
@@ -18,6 +16,9 @@ import br.com.magnasistemas.api_saude.entity.Especialidade;
 import br.com.magnasistemas.api_saude.entity.Medico;
 import br.com.magnasistemas.api_saude.repository.EspecialidadeRepository;
 import br.com.magnasistemas.api_saude.repository.MedicoRepository;
+import br.com.magnasistemas.api_saude.validators.implementers.medico.ValidadorMedicoAtualizacao;
+import br.com.magnasistemas.api_saude.validators.implementers.medico.ValidadorMedicoCadastro;
+import br.com.magnasistemas.api_saude.validators.implementers.medico.ValidadorMedicoExistencia;
 import jakarta.validation.Valid;
 
 @Service
@@ -31,14 +32,18 @@ public class MedicoService {
 	@Autowired
 	EspecialidadeRepository especialidadeRepository;
 	
+	@Autowired
+	ValidadorMedicoCadastro validadorCadastro;
+	
+	@Autowired
+	ValidadorMedicoExistencia validadorExistencia;
+	
+	@Autowired
+	ValidadorMedicoAtualizacao validadorAtualizacao;
+	
 	public DadosDetalhamentoMedico cadastro (@Valid DadosCadastroMedico dados){
-		if(crmExiste(dados.crm())) {
-//			return ResponseEntity.status(409).build();
-		}
 		
-		if(!especialidadeExiste(dados.especialidades())) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorCadastro.validador(dados);
 		
 		Medico medico =  new Medico(dados);	
 		
@@ -72,17 +77,13 @@ public class MedicoService {
 	}
 	
 	public DadosDetalhamentoMedico atualizar (@Valid DadosAtualizarMedico dados){
-		if(!medicoRepository.existsById(dados.id())) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorExistencia.validador(dados.id());
 		
 		Medico medico = medicoRepository.getReferenceById(dados.id());
 		
 		medico.setNome(dados.nome());
 		
-		if(crmExiste(dados.crm()) && !dados.crm().equals(medico.getCrm())) {
-//			return ResponseEntity.status(409).build();
-		}
+		validadorAtualizacao.validador(dados);
 		
 		medico.setCrm(dados.crm());
 		
@@ -96,18 +97,14 @@ public class MedicoService {
 	}
 	
 	public void excluir(Long id){
-		if(!medicoRepository.existsById(id)) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorExistencia.validador(id);
 		
 		medicoRepository.deleteById(id);
 	
 	}
 	
 	public DadosDetalhamentoMedico detalhar(Long id){
-		if(!medicoRepository.existsById(id)) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorExistencia.validador(id);
 		
 		Medico medico = medicoRepository.getReferenceById(id);
 		
@@ -117,19 +114,5 @@ public class MedicoService {
 			listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
 		}
 		return new DadosDetalhamentoMedico(medico, listEsp);
-	}
-	
-	
-	private boolean crmExiste(String crm) {
-		return  medicoRepository.existsByCrm(crm);
-	}
-	
-	private boolean especialidadeExiste(List<Long> listaEspecialidades) {
-		for (Long especialidade : listaEspecialidades) {
-			if(!especialidadeRepository.existsById(especialidade)) {
-				return false;
-			}
-		}
-		return true;
 	}
 }

@@ -10,6 +10,10 @@ import br.com.magnasistemas.api_saude.dto.paciente.DadosCadastroPaciente;
 import br.com.magnasistemas.api_saude.dto.paciente.DadosDetalhamentoPaciente;
 import br.com.magnasistemas.api_saude.entity.Paciente;
 import br.com.magnasistemas.api_saude.repository.PacienteRepository;
+import br.com.magnasistemas.api_saude.validators.implementers.paciente.ValidadorPacienteAtualizacao;
+import br.com.magnasistemas.api_saude.validators.implementers.paciente.ValidadorPacienteCadastro;
+import br.com.magnasistemas.api_saude.validators.implementers.paciente.ValidadorPacienteDelete;
+import br.com.magnasistemas.api_saude.validators.implementers.paciente.ValidadorPacienteDetalhar;
 import jakarta.validation.Valid;
 
 @Service
@@ -20,7 +24,21 @@ public class PacienteService {
 	@Autowired
 	PacienteRepository pacienteRepository;
 	
+	@Autowired
+	ValidadorPacienteAtualizacao validadorAtualizacao;
+	
+	@Autowired
+	ValidadorPacienteDelete validadorDelete;
+	
+	@Autowired
+	ValidadorPacienteDetalhar validadorDetalhar;
+	
+	@Autowired
+	ValidadorPacienteCadastro validadorCadastro;
+	
 	public DadosDetalhamentoPaciente cadastro (@Valid DadosCadastroPaciente dados){
+		validadorCadastro.validador(dados);
+		
 		Paciente paciente =  new Paciente(dados);	
 		
 		pacienteRepository.save(paciente);
@@ -31,16 +49,12 @@ public class PacienteService {
 	public Page<DadosDetalhamentoPaciente> listar(Pageable pageable){
 		Page<Paciente> pagePacientes = pacienteRepository.findAll(pageable);
 		
-		Page<DadosDetalhamentoPaciente> pageDados = pagePacientes.map(DadosDetalhamentoPaciente::new);
-		
-		return pageDados;
+		return pagePacientes.map(DadosDetalhamentoPaciente::new);
 		
 	}
 	
 	public DadosDetalhamentoPaciente atualizar (@Valid DadosAtualizarPaciente dados){
-		if(!pacienteRepository.existsById(dados.id())) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorAtualizacao.validador(dados);
 		
 		Paciente paciente = pacienteRepository.getReferenceById(dados.id());
 		
@@ -55,18 +69,14 @@ public class PacienteService {
 	}
 	
 	public void excluir(Long id){
-		if(!pacienteRepository.existsById(id)) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorDelete.validador(id);
 		
 		pacienteRepository.deleteById(id);
 		
 	}
 	
 	public DadosDetalhamentoPaciente detalhar(Long id){
-		if(!pacienteRepository.existsById(id)) {
-//			return ResponseEntity.notFound().build();
-		}
+		validadorDetalhar.validador(id);
 		
 		Paciente paciente = pacienteRepository.getReferenceById(id);
 		

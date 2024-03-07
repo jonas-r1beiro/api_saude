@@ -1,0 +1,13 @@
+package br.com.magnasistemas.api_saude.validators.implementers.especialidade;
+
+import br.com.magnasistemas.api_saude.validators.interfaces.especialidade.ExistenciaEspecialidadePorIdValidator;
+
+public class ValidadorEspecialidadeAtualizacao implements ExistenciaEspecialidadePorIdValidator {
+
+	@Override
+	public void validador(Long id) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
