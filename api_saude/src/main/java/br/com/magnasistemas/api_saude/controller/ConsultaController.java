@@ -1,5 +1,7 @@
 package br.com.magnasistemas.api_saude.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,11 +39,17 @@ public class ConsultaController {
 		return ResponseEntity.status(201).body(consultaService.cadastro(dados));
 	}
 	
+//	@Operation(description = "Lista todas as consultas")
+//	@GetMapping
+//	public ResponseEntity<Page<DadosDetalhamentoConsulta>> listar(
+//			@PageableDefault(size = 100, page = 0, sort = "id") Pageable pageable){
+//		return ResponseEntity.ok(consultaService.listar(pageable));
+//	}
+	
 	@Operation(description = "Lista todas as consultas")
 	@GetMapping
-	public ResponseEntity<Page<DadosDetalhamentoConsulta>> listar(
-			@PageableDefault(size = 100, page = 0, sort = "id") Pageable pageable){
-		return ResponseEntity.ok(consultaService.listar(pageable));
+	public ResponseEntity<List<DadosDetalhamentoConsulta>> listar(){
+		return ResponseEntity.ok(consultaService.listar());
 	}
 	
 	@Operation(description = "Atualiza um registro de consulta")

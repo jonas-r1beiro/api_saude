@@ -62,20 +62,42 @@ public class MedicoService {
 		return new DadosDetalhamentoMedico(medico, listEsp);
 	}
 	
-	public Page<DadosDetalhamentoMedico> listar(Pageable pageable){
-		Page<Medico> pageMedicos = medicoRepository.findAll(pageable);
+//	public Page<DadosDetalhamentoMedico> listar(Pageable pageable){
+//		Page<Medico> pageMedicos = medicoRepository.findAll(pageable);
+//		
+//		return pageMedicos.map(medico ->{
+//			List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
+//			
+//			
+//				for (Especialidade especialidade : medico.getEspecialidades()) {
+//					listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
+//				}				
+//			
+//			
+//			return new DadosDetalhamentoMedico(medico, listEsp);
+//		});
+//	}
+	
+	public List<DadosDetalhamentoMedico> listar(){
+		List<Medico> pageMedicos = medicoRepository.findAll();
 		
-		return pageMedicos.map(medico ->{
-			List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
+		List<DadosDetalhamentoMedico> listMed = new ArrayList<>();
+		
+		List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
+		
+		for (Medico medico : pageMedicos) {
+			for (Especialidade especialidade : medico.getEspecialidades()) {
+				listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
+			}
 			
+			listMed.add(new DadosDetalhamentoMedico(medico, listEsp));
 			
-				for (Especialidade especialidade : medico.getEspecialidades()) {
-					listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
-				}				
+			listEsp = new ArrayList<>();
 			
-			
-			return new DadosDetalhamentoMedico(medico, listEsp);
-		});
+		}
+		
+		return listMed;
+		
 	}
 	
 	public DadosDetalhamentoMedico atualizar (@Valid DadosAtualizarMedico dados){

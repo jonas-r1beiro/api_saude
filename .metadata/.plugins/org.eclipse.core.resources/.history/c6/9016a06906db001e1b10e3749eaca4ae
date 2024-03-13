@@ -1,7 +1,0 @@
-package br.com.magnasistemas.api_saude.dto.medicoEspecialidade;
-
-public record DadosCadastroMedEsp(
-		
-		) {
-
-}

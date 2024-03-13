@@ -1,5 +1,7 @@
 package br.com.magnasistemas.api_saude.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,11 +39,17 @@ public class EspecialidadeController {
 		return ResponseEntity.status(201).body(especialidadeService.cadastro(dados));
 	}
 	
+//	@Operation(description = "Lista todas as especialidedes")
+//	@GetMapping
+//	public ResponseEntity<Page<DadosDetalhamentoEspecialidade>> listar(
+//			@PageableDefault(size = 100, page = 0, sort = "id") Pageable pageable){
+//		return ResponseEntity.ok(especialidadeService.listar(pageable));
+//	}
+	
 	@Operation(description = "Lista todas as especialidedes")
 	@GetMapping
-	public ResponseEntity<Page<DadosDetalhamentoEspecialidade>> listar(
-			@PageableDefault(size = 100, page = 0, sort = "id") Pageable pageable){
-		return ResponseEntity.ok(especialidadeService.listar(pageable));
+	public ResponseEntity<List<DadosDetalhamentoEspecialidade>> listar(){
+		return ResponseEntity.ok(especialidadeService.listar());
 	}
 	
 	@Operation(description = "Atualiza um registro de especialide")

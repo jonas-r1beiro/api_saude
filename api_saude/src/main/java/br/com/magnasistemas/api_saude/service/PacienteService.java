@@ -1,5 +1,8 @@
 package br.com.magnasistemas.api_saude.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,11 +49,16 @@ public class PacienteService {
 		return new DadosDetalhamentoPaciente(paciente);
 	}
 	
-	public Page<DadosDetalhamentoPaciente> listar(Pageable pageable){
-		Page<Paciente> pagePacientes = pacienteRepository.findAll(pageable);
+	public List<DadosDetalhamentoPaciente> listar(){
+		List<Paciente> listPacientes = pacienteRepository.findAll();
 		
-		return pagePacientes.map(DadosDetalhamentoPaciente::new);
+		List<DadosDetalhamentoPaciente> listDet = new ArrayList<>();
 		
+		for (Paciente paciente : listPacientes) {
+			listDet.add(new DadosDetalhamentoPaciente(paciente));
+		}
+		
+		return listDet;
 	}
 	
 	public DadosDetalhamentoPaciente atualizar (@Valid DadosAtualizarPaciente dados){

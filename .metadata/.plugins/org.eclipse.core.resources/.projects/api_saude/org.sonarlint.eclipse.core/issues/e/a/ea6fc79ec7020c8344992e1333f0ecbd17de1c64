@@ -1,0 +1,12 @@
+
+n	java:S125-"<This block of commented-out lines of code should be removed.( •Î†8›¡Ğıâ1Hº RMAJORZ
+CODE_SMELL
+y
+java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8›¡Ğıâ1H½ RMINORZ
+CODE_SMELL
+}
+java:S1128"ERemove this unused import 'org.springframework.data.domain.Pageable'.(‡ë‚Öıÿÿÿÿ8›¡Ğıâ1H¿ RMINORZ
+CODE_SMELL
+{
+java:S1128"IRemove this unused import 'org.springframework.data.web.PageableDefault'.(¯’Î<8›¡Ğıâ1HÁ RMINORZ
+CODE_SMELL
