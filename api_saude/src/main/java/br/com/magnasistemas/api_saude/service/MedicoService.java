@@ -62,22 +62,6 @@ public class MedicoService {
 		return new DadosDetalhamentoMedico(medico, listEsp);
 	}
 	
-//	public Page<DadosDetalhamentoMedico> listar(Pageable pageable){
-//		Page<Medico> pageMedicos = medicoRepository.findAll(pageable);
-//		
-//		return pageMedicos.map(medico ->{
-//			List<DadosDetalhamentoEspecialidade> listEsp = new ArrayList<>();
-//			
-//			
-//				for (Especialidade especialidade : medico.getEspecialidades()) {
-//					listEsp.add(new DadosDetalhamentoEspecialidade(especialidade));
-//				}				
-//			
-//			
-//			return new DadosDetalhamentoMedico(medico, listEsp);
-//		});
-//	}
-	
 	public List<DadosDetalhamentoMedico> listar(){
 		List<Medico> pageMedicos = medicoRepository.findAll();
 		

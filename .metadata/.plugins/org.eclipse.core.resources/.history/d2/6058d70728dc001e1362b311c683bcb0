@@ -1,9 +1,0 @@
-package br.com.magnasistemas.api_saude.validators.interfaces.consulta;
-
-import br.com.magnasistemas.api_saude.dto.consulta.DadosAtualizarConsulta;
-
-public class AtualizarConsultaValidator {
-	
-	void validador(DadosAtualizarConsulta dados);
-
-}

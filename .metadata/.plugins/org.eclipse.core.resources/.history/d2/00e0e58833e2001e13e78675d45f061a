@@ -1,0 +1,7 @@
+package br.com.magnasistemas.api_saude.dto.security;
+
+public record DadosTokenJwt(
+		String token
+		) {
+
+}

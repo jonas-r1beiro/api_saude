@@ -1,8 +1,0 @@
-package br.com.magnasistemas.api_saude.exception;
-
-public class ArgumentoInvalidoException extends RuntimeException {
-
-	public ArgumentoInvalidoException(String erro) {
-		super(erro);
-	}
-}
