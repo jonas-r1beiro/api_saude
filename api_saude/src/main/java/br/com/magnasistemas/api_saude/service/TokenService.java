@@ -32,6 +32,7 @@ public class TokenService {
 					.withSubject(usuario.getLogin())
 					.withExpiresAt(dataExpiracao())
 					.withClaim("idExterno", usuario.getIdExterno())
+					.withClaim("idPapel", usuario.getPapel().getId())
 					.sign(algoritmo);			
 		}catch(JWTCreationException ex) {
 			throw new ArgumentoInvalidoException("erro ao gerar token jwt");

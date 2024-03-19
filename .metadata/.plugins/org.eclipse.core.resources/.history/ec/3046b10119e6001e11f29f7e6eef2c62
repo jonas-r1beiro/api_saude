@@ -1,0 +1,57 @@
+package br.com.magnasistemas.api_saude.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.magnasistemas.api_saude.dto.usuario.DadosCadastroUsuario;
+import br.com.magnasistemas.api_saude.dto.usuario.DadosDetalhamentoUsuario;
+import br.com.magnasistemas.api_saude.service.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping("/usuarios")
+public class UsuarioController {
+	
+	@Autowired
+	UsuarioService usuarioService;
+
+	@Operation(description = "Cadastrar um usuário")
+	@PostMapping
+	@Transactional
+	public ResponseEntity<DadosDetalhamentoUsuario> cadastrar(@RequestBody @Valid DadosCadastroUsuario dados){
+		return ResponseEntity.status(201).body(usuarioService.cadastro(dados));
+	}
+	
+	@Operation(description = "Lista todas os usuários")
+	@GetMapping
+	public ResponseEntity<List<DadosDetalhamentoUsuario>> listar(){
+		return ResponseEntity.ok(usuarioService.listar());
+	}
+	
+	@Operation(description = "Delete em um regisro de usuário")
+	@DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<HttpStatus> excluir(@PathVariable Long id){
+		usuarioService.excluir(id);
+		
+		return ResponseEntity.noContent().build();
+	}
+	
+	@Operation(description = "Detalhar um registro de usuário")
+	@GetMapping("/{id}")
+	public ResponseEntity<DadosDetalhamentoUsuario> detalhar(@PathVariable Long id){
+		return ResponseEntity.ok(usuarioService.detalhar(id));
+	}
+}

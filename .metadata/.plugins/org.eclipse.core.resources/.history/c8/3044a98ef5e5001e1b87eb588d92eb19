@@ -1,0 +1,10 @@
+package br.com.magnasistemas.api_saude.dto.usuario;
+
+public record DadosDetalhamentoUsuario(
+		Long id,
+		String login
+		) {
+	
+//	public DadosDetalhamentoUsuari()
+
+}

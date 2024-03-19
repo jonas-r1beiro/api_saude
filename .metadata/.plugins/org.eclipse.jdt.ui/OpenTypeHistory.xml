@@ -9,4 +9,6 @@
     <typeInfo handle="=api_saude/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.com.magnasistemas.api_saude.validators.interfaces.consulta{AtualizarConsultaValidator.java[AtualizarConsultaValidator" modifiers="513" timestamp="1709777498346"/>
     <typeInfo handle="=api_saude/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.com.magnasistemas.api_saude.validators.interfaces.consulta{ExistenciaConsultaPorIdValidator.java[ExistenciaConsultaPorIdValidator" modifiers="513" timestamp="1709777452533"/>
     <typeInfo handle="=api_saude/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.com.magnasistemas.api_saude.validators.interfaces.consulta{HorarioPossivelConsultaValidator.java[HorarioPossivelConsultaValidator" modifiers="513" timestamp="1709778273816"/>
+    <typeInfo handle="=api_saude/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.com.magnasistemas.api_saude.validators.interfaces.usuario{AtualizarUsuarioValidator.java[AtualizarUsuarioValidator" modifiers="513" timestamp="1710868994799"/>
+    <typeInfo handle="=api_saude/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.com.magnasistemas.api_saude.validators.interfaces.usuario{ExistenciaUsuarioValidator.java[ExistenciaUsuarioValidator" modifiers="513" timestamp="1710869753743"/>
 </typeInfoHistroy>

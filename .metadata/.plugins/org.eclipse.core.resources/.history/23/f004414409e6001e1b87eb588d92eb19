@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfigurations {
@@ -21,23 +22,28 @@ public class SecurityConfigurations {
 	@Autowired
 	private SecurityFilter securityFilter;
 	
-	private final static String FUNCIONARIO = "FUNCIONARIO";
-	private final static String PACIENTE = "PACIENTE";
+	private static final String FUNCIONARIO = "FUNCIONARIO";
+	private static final String PACIENTE = "PACIENTE";
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+		
 		return http.csrf(csrf -> csrf.disable())
 				.cors(cors -> cors.disable())
 				.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(req ->{
+					req.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
 					req.requestMatchers(HttpMethod.POST, "/login").permitAll();
-					req.requestMatchers(HttpMethod.GET, "/consultas").hasAnyRole(PACIENTE, FUNCIONARIO);
-					req.requestMatchers(HttpMethod.GET, "/pacientes").hasAnyRole(PACIENTE, FUNCIONARIO);
+					req.requestMatchers(HttpMethod.GET, "/consultas/pesquisa_id_paciente/**").hasAnyRole(PACIENTE, FUNCIONARIO);
+					req.requestMatchers(HttpMethod.GET, "/consultas/pesquisa_cpf/**").hasAnyRole(PACIENTE, FUNCIONARIO);
+					req.requestMatchers(HttpMethod.GET, "/pacientes/**").hasAnyRole(PACIENTE, FUNCIONARIO);
 					req.anyRequest().hasRole(FUNCIONARIO);
 				})
 				.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+				.cors(cors -> cors.disable())
 				.build();
 	}
+	
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {

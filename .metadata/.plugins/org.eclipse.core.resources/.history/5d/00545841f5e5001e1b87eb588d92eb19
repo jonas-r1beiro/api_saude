@@ -1,0 +1,13 @@
+package br.com.magnasistemas.api_saude.dto.papel;
+
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+public record DadosDetalhamentoPapel(
+		Long id,
+		String nome
+		) {
+
+}

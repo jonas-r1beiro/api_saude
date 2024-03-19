@@ -22,6 +22,20 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "tb_usuario")
 public class Usuario implements UserDetails {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Usuario(String login, String senha, Long idExterno, Papel papel) {
+		this.login = login;
+		this.senha = senha;
+		this.idExterno = idExterno;
+		this.papel = papel;
+	}
+	
+	public Usuario() {}
+	
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
@@ -72,7 +86,7 @@ public class Usuario implements UserDetails {
 		return this.idExterno;
 	}
 
-	public void setIdPaciente(Long idExterno) {
+	public void setIdExterno(Long idExterno) {
 		this.idExterno = idExterno;
 	}
 

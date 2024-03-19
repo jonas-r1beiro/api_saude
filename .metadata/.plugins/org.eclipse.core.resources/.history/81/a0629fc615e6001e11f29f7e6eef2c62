@@ -1,0 +1,7 @@
+package br.com.magnasistemas.api_saude.validators.implementers.usuario;
+
+import br.com.magnasistemas.api_saude.validators.interfaces.usuario.AtualizarUsuarioValidator;
+
+public interface ValidadorUsuarioAtualizacao extends AtualizarUsuarioValidator {
+
+}
