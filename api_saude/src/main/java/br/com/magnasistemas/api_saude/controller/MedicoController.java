@@ -3,12 +3,8 @@ package br.com.magnasistemas.api_saude.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,13 +35,6 @@ public class MedicoController {
 	public ResponseEntity<DadosDetalhamentoMedico> cadastrar(@RequestBody @Valid DadosCadastroMedico dados){		
 		return ResponseEntity.status(201).body(medicoService.cadastro(dados));
 	}
-	
-//	@Operation(description = "Lista todas os médicos")
-//	@GetMapping
-//	public ResponseEntity<Page<DadosDetalhamentoMedico>> listar(
-//			@PageableDefault(size = 100, page = 0, sort = "id") Pageable pageable){
-//		return ResponseEntity.ok(medicoService.listar(pageable));
-//	}
 	
 	@Operation(description = "Lista todas os médicos")
 	@GetMapping

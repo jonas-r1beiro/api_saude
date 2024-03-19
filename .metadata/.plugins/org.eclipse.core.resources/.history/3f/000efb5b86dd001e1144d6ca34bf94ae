@@ -1,7 +1,0 @@
-package br.com.magnasistemas.api_saude.cors;
-
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-public class CorsConfiguration implements WebMvcConfigurer {
-
-}

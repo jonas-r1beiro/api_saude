@@ -1,0 +1,14 @@
+package br.com.magnasistemas.api_saude.validators.implementers.especialidade;
+
+import br.com.magnasistemas.api_saude.dto.especialidade.DadosCadastroEspecialidade;
+import br.com.magnasistemas.api_saude.validators.interfaces.especialidade.CadastrarEspecialidadeValidator;
+
+public class ValidadorEspecialidadeCadastro implements CadastrarEspecialidadeValidator {
+
+	@Override
+	public void validador(DadosCadastroEspecialidade dados) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

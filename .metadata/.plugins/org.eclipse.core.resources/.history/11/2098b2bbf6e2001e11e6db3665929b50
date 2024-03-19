@@ -1,0 +1,20 @@
+package br.com.magnasistemas.api_saude.validators.implementers.especialidade;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.magnasistemas.api_saude.dto.especialidade.DadosCadastroEspecialidade;
+import br.com.magnasistemas.api_saude.repository.EspecialidadeRepository;
+import br.com.magnasistemas.api_saude.validators.interfaces.especialidade.CadastrarEspecialidadeValidator;
+
+public class ValidadorEspecialidadeCadastro implements CadastrarEspecialidadeValidator {
+
+	@Autowired
+	EspecialidadeRepository especialidadeRepository;
+	
+	@Override
+	public void validador(DadosCadastroEspecialidade dados) {
+		especialidadeRepository.existsByNome(dados.nome());
+
+	}
+
+}

@@ -1,10 +1,4 @@
 
-d
-java:S1602",Remove useless curly braces around statement(¯äéÑþÿÿÿÿ8ËÑºóã1HÌ*RMINORZ
-CODE_SMELL
-„
-java:S1612"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(¯äéÑþÿÿÿÿ8ËÑºóã1HÎ*RMINORZ
-CODE_SMELL
 Ž
-java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(ø¯ÆûüÿÿÿÿHÍ*RCRITICALZ
+java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(ø¯ÆûüÿÿÿÿH³5RCRITICALZ
 CODE_SMELL

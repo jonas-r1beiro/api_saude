@@ -1,0 +1,7 @@
+
+Ä
+java:S1128"MRemove this unused import 'org.springframework.security.core.Authentication'.(Ò˝”ì8Î‰øµÂ1HÊ6RMINORZ
+CODE_SMELL
+m
+java:S1126("AReplace this if-then-else statement by a single return statement.(âêÊÇHﬁ6RMINORZ
+CODE_SMELL

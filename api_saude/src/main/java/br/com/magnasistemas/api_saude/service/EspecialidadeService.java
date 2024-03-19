@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.magnasistemas.api_saude.dto.especialidade.DadosAtualizarEspecialidade;
@@ -14,6 +12,7 @@ import br.com.magnasistemas.api_saude.dto.especialidade.DadosDetalhamentoEspecia
 import br.com.magnasistemas.api_saude.entity.Especialidade;
 import br.com.magnasistemas.api_saude.repository.EspecialidadeRepository;
 import br.com.magnasistemas.api_saude.validators.implementers.especialidade.ValidadorEspecialidadeAtualizacao;
+import br.com.magnasistemas.api_saude.validators.implementers.especialidade.ValidadorEspecialidadeCadastro;
 import br.com.magnasistemas.api_saude.validators.implementers.especialidade.ValidadorEspecialidadeDelete;
 import br.com.magnasistemas.api_saude.validators.implementers.especialidade.ValidadorEspecialidadeDetalhar;
 import jakarta.validation.Valid;
@@ -30,12 +29,17 @@ public class EspecialidadeService {
 	ValidadorEspecialidadeAtualizacao validadorAtualizacao;
 	
 	@Autowired
+	ValidadorEspecialidadeCadastro validadorCadastro;
+	
+	@Autowired
 	ValidadorEspecialidadeDelete validadorDelete;
 	
 	@Autowired
 	ValidadorEspecialidadeDetalhar validadorDetalhar;
 
 	public DadosDetalhamentoEspecialidade cadastro (@Valid DadosCadastroEspecialidade dados){
+		validadorCadastro.validador(dados);
+		
 		Especialidade especialidade =  new Especialidade(dados);	
 		
 		especialidadeRepository.save(especialidade);
@@ -43,18 +47,12 @@ public class EspecialidadeService {
 		return new DadosDetalhamentoEspecialidade(especialidade);
 	}
 	
-//	public Page<DadosDetalhamentoEspecialidade> listar(Pageable pageable){
-//		Page<Especialidade> pageEspecialidades = especialidadeRepository.findAll(pageable);
-//		
-//		return pageEspecialidades.map(DadosDetalhamentoEspecialidade::new);
-//	}
-	
 	public List<DadosDetalhamentoEspecialidade> listar(){
-		List<Especialidade> ListEspecialidades = especialidadeRepository.findAll();
+		List<Especialidade> listEspecialidades = especialidadeRepository.findAll();
 		
 		List<DadosDetalhamentoEspecialidade> listDet = new ArrayList<>();
 		
-		for (Especialidade especialidade : ListEspecialidades) {
+		for (Especialidade especialidade : listEspecialidades) {
 			listDet.add(new DadosDetalhamentoEspecialidade(especialidade));
 		}
 		

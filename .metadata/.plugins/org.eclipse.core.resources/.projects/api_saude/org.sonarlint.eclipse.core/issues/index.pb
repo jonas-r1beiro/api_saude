@@ -157,3 +157,11 @@ Osrc/main/java/br/com/magnasistemas/api_saude/dto/usuario/DadosAutenticacao.java
 Ssrc/main/java/br/com/magnasistemas/api_saude/controller/AutenticacaoController.java,6\7\67cbc11881847dbd93d8b16d4f1189ce52aafc1c
 Å
 Qsrc/main/java/br/com/magnasistemas/api_saude/security/SecurityConfigurations.java,0\6\06b8109fa4474de0f7c95adfd4f54f085364d376
+¶
+vsrc/main/java/br/com/magnasistemas/api_saude/validators/implementers/especialidade/ValidadorEspecialidadeCadastro.java,6\a\6a80c90224c5c983b61b3bb6dd5355a329fdd254
+~
+Nsrc/main/java/br/com/magnasistemas/api_saude/repository/UsuarioRepository.java,1\5\15c8895b113bc9f7f78f14e42373527f54025ae1
+•
+usrc/main/java/br/com/magnasistemas/api_saude/validators/interfaces/especialidade/CadastrarEspecialidadeValidator.java,b\c\bc37044248710291db57dc39be2547532ff4fb84
+w
+Gsrc/main/java/br/com/magnasistemas/api_saude/security/UserSecurity.java,4\3\43945fa8f112b5a7a97fb2d221f08fc2727c67d7

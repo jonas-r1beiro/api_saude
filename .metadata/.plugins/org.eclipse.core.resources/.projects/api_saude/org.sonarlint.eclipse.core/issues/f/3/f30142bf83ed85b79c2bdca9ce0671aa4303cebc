@@ -1,15 +1,0 @@
-
-{
-java:S1128"IRemove this unused import 'org.springframework.data.web.PageableDefault'.(¯’Î<8¬ùÝèâ1H¹)RMINORZ
-CODE_SMELL
-y
-java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âŽŽüÿÿÿÿ8¬ùÝèâ1H¾)RMINORZ
-CODE_SMELL
-}
-java:S1128"ERemove this unused import 'org.springframework.data.domain.Pageable'.(‡ë‚Öýÿÿÿÿ8¬ùÝèâ1HÀ)RMINORZ
-CODE_SMELL
-n	java:S125."<This block of commented-out lines of code should be removed.( •Î†8¬ùÝèâ1H»)RMAJORZ
-CODE_SMELL
-ƒ
-java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.CrossOrigin'.(º´Ñ†8×á«óã1H˜*RMINORZ
-CODE_SMELL

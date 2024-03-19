@@ -1,0 +1,7 @@
+package br.com.magnasistemas.api_saude.security;
+
+import org.springframework.security.authorization.AuthorizationManager;
+
+public class UserSecurity implements AuthorizationManager<T> {
+
+}

@@ -13,6 +13,9 @@ import br.com.magnasistemas.api_saude.entity.Consulta;
 
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 	
+	@Query(value = "SELECT tc.id, tc.fk_paciente, tc.fk_medico, tc.fk_especialidade, tc.data_hora from tb_consulta tc INNER JOIN tb_paciente tp on tc.fk_paciente = tp.id WHERE tp.id = :id", nativeQuery = true)
+	List<Consulta> listarPorIdPaciente(@Param("id") Long id);
+	
 	@Query(value = "SELECT tc.id, tc.fk_paciente, tc.fk_medico, tc.fk_especialidade, tc.data_hora from tb_consulta tc INNER JOIN tb_paciente tp on tc.fk_paciente = tp.id WHERE tp.cpf LIKE :cpf", nativeQuery = true)
 	List<Consulta> listaPorCpf(@Param("cpf") String cpf);
 	

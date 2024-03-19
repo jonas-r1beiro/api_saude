@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.magnasistemas.api_saude.dto.consulta.DadosAtualizarConsulta;
@@ -63,13 +61,6 @@ public class ConsultaService {
 		return new DadosDetalhamentoConsulta(consulta);
 	}
 	
-//	public Page<DadosDetalhamentoConsulta> listar(Pageable pageable){
-//		Page<Consulta> pageConsulta = consultaRepository.findAll(pageable);
-//		
-//		return pageConsulta.map(DadosDetalhamentoConsulta::new);
-//		
-//	}
-	
 	public List<DadosDetalhamentoConsulta> listar(){
 		List<Consulta> listConsulta = consultaRepository.findAll();
 		
@@ -112,6 +103,19 @@ public class ConsultaService {
 	public List<DadosDetalhamentoConsulta> listarPorCpf(String cpf){
 		cpf = "%"+cpf+"%";
 		List<Consulta> listaConsulta = consultaRepository.listaPorCpf(cpf);
+		
+		List<DadosDetalhamentoConsulta> listDet = new ArrayList<>();
+		
+		for (Consulta consulta : listaConsulta) {
+			listDet.add(new DadosDetalhamentoConsulta(consulta));
+		}
+		
+		return listDet;
+	}
+	
+	public List<DadosDetalhamentoConsulta> listarPorIdCliente(Long id){
+		
+		List<Consulta> listaConsulta = consultaRepository.listarPorIdPaciente(id);
 		
 		List<DadosDetalhamentoConsulta> listDet = new ArrayList<>();
 		
