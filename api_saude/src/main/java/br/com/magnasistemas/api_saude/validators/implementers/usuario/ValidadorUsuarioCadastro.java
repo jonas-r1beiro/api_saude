@@ -27,7 +27,7 @@ public class ValidadorUsuarioCadastro implements CadastrarUsuarioValidator {
 		
 		Papel papel = papelRepository.getReferenceById(dados.idPapel());
 		
-		if(papel.getId() == 2 && !pacienteRepository.existsById(dados.idExterno())) {
+		if(papel.getId() == 2 && dados.idExterno() != null && !pacienteRepository.existsById(dados.idExterno())) {
 			throw new ArgumentoInvalidoException("Não existe nenhum paciente com o ID passado");
 		}
 		
