@@ -107,8 +107,32 @@
 	<section name="JavaSearchPage">
 		<item key="CASE_SENSITIVE" value="false"/>
 		<item key="INCLUDE_MASK" value="11"/>
-		<item key="HISTORY_SIZE" value="10"/>
+		<item key="HISTORY_SIZE" value="12"/>
 		<section name="HISTORY0">
+			<item key="searchFor" value="1"/>
+			<item key="scope" value="0"/>
+			<item key="pattern" value="getsubject"/>
+			<item key="limitTo" value="3"/>
+			<item key="matchLocations" value="0"/>
+			<item key="javaElement" value=""/>
+			<item key="isCaseSensitive" value="false"/>
+			<item key="includeMask" value="11"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY1">
+			<item key="searchFor" value="0"/>
+			<item key="scope" value="0"/>
+			<item key="pattern" value="userdetails"/>
+			<item key="limitTo" value="2"/>
+			<item key="matchLocations" value="0"/>
+			<item key="javaElement" value=""/>
+			<item key="isCaseSensitive" value="false"/>
+			<item key="includeMask" value="11"/>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY2">
 			<item key="searchFor" value="1"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="PasswordEncoder"/>
@@ -120,7 +144,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY1">
+		<section name="HISTORY3">
 			<item key="searchFor" value="1"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="passwordEncoder"/>
@@ -132,7 +156,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY2">
+		<section name="HISTORY4">
 			<item key="searchFor" value="2"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="bcrypt"/>
@@ -144,7 +168,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY3">
+		<section name="HISTORY5">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="usersecurity"/>
@@ -156,7 +180,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY4">
+		<section name="HISTORY6">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="throw new"/>
@@ -168,7 +192,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY5">
+		<section name="HISTORY7">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="requestauthorization"/>
@@ -180,7 +204,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY6">
+		<section name="HISTORY8">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="user"/>
@@ -192,7 +216,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY7">
+		<section name="HISTORY9">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="getContext"/>
@@ -204,7 +228,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY8">
+		<section name="HISTORY10">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="dofilter"/>
@@ -216,7 +240,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
-		<section name="HISTORY9">
+		<section name="HISTORY11">
 			<item key="searchFor" value="0"/>
 			<item key="scope" value="0"/>
 			<item key="pattern" value="securityfilterchain"/>
@@ -228,5 +252,7 @@
 			<list key="workingSets">
 			</list>
 		</section>
+	</section>
+	<section name="RenameInformationPopup">
 	</section>
 </section>

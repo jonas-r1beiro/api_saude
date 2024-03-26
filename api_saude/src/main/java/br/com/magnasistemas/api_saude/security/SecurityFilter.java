@@ -2,6 +2,7 @@ package br.com.magnasistemas.api_saude.security;
 
 
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,8 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import br.com.magnasistemas.api_saude.entity.Consulta;
 import br.com.magnasistemas.api_saude.entity.Paciente;
 import br.com.magnasistemas.api_saude.entity.Usuario;
+import br.com.magnasistemas.api_saude.exception.ArgumentoInvalidoException;
+import br.com.magnasistemas.api_saude.repository.ConsultaRepository;
 import br.com.magnasistemas.api_saude.repository.PacienteRepository;
 import br.com.magnasistemas.api_saude.repository.UsuarioRepository;
 import br.com.magnasistemas.api_saude.service.TokenService;
@@ -33,9 +37,14 @@ public class SecurityFilter extends OncePerRequestFilter {
 	@Autowired
 	private PacienteRepository pacienteRepository;
 	
+	@Autowired
+	private ConsultaRepository consultaRepository;
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
+		
+		
 		String tokenJWT = recuperarToken(request);
 		
 		if(tokenJWT != null) {
@@ -44,41 +53,51 @@ public class SecurityFilter extends OncePerRequestFilter {
 			
 			
 			
-			
 			var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 			
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-			if(usuario.getIdExterno() != null) {
+			if(usuario.getPapel().getId() == 2) {
+				
 				Pattern pattern = Pattern.compile(".*/([^/]+)/[^/]+");
 				
 				Matcher matcher = pattern.matcher(request.getRequestURI());
 				
 				
 				if(matcher.matches()) {
+					
 					int indexValorFinal = request.getRequestURI().lastIndexOf('/');
 					
 					String valorFinalString = request.getRequestURI().substring(indexValorFinal + 1);
 					
 					if(matcher.group(1).equals("pesquisa_id_paciente")) {
 						
-						if(!valorFinalString.equals(usuario.getIdExterno().toString())) {
+						if(usuario.getPapel().getId() == 2 && !valorFinalString.equals(usuario.getIdExterno().toString())) {
 							SecurityContextHolder.getContext().setAuthentication(null);
+							throw new ArgumentoInvalidoException("O ID passado não corresponde ao ID do Paciente");
 						}			
 						
 					}else if(matcher.group(1).equals("pesquisa_cpf")) {
-						Paciente paciente = pacienteRepository.findById(Long.parseLong(valorFinalString)).get();
+						List<Consulta> consultas = consultaRepository.listaPorCpf("%"+valorFinalString+"%", valorFinalString);
 						
-						
-						String cpfPaciente = paciente.getCpf();
-						
-						if(!valorFinalString.equals(cpfPaciente)) {
-							SecurityContextHolder.getContext().setAuthentication(null);
-						}
-					}else if(matcher.group(1).equals("pacientes") && (!valorFinalString.equals(usuario.getIdExterno().toString()))) {
-							SecurityContextHolder.getContext().setAuthentication(null);
+						if(usuario.getPapel().getId() == 2) {
+							for (Consulta consulta : consultas) { 
+								System.out.println("consulta.getFkPaciente().getCpf(): " + consulta.getFkPaciente().getCpf());
+								if(!valorFinalString.equalsIgnoreCase(consulta.getFkPaciente().getCpf())) {
+									SecurityContextHolder.getContext().setAuthentication(null);
+									throw new ArgumentoInvalidoException("O CPF passado para a pesquisa não corresponse ao CPF do Paciente");
+								}
+							}		
 							
+							if(consultas.isEmpty()) {
+//								throw new ArgumentoInvalidoException("O CPF passado para a pesquisa não corresponse ao CPF do Paciente");
+							}
+						}
 						
+						
+					}else if(matcher.group(1).equalsIgnoreCase("pacientes") && (!valorFinalString.equals(usuario.getIdExterno().toString()))) {
+							SecurityContextHolder.getContext().setAuthentication(null);
+							throw new ArgumentoInvalidoException("O ID passado para a pesquisa não corresponse ao ID do Paciente");
 					}
 				}
 				
@@ -86,8 +105,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 			}
 			
 		}
-		
-		
 		
 		
 		filterChain.doFilter(request, response);

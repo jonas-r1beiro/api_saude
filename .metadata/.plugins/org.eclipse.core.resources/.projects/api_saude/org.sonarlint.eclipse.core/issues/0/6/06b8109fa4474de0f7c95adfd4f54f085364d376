@@ -1,4 +1,65 @@
 
+t	java:S125•"<This block of commented-out lines of code should be removed.(Ş‰úùÿÿÿÿ8‰Ú¡Üç1HÊMRMAJORZ
+CODE_SMELL
+x
+java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ8‰Ú¡Üç1HÔMRMINORZ
+CODE_SMELL
+j
+java:S1611`"2Remove the parentheses around the "csrf" parameter(ª»Çşÿÿÿÿ8‰Ú¡Üç1H¯PRMINORZ
+CODE_SMELL
+e
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8‰Ú¡Üç1HÒMRMINORZ
+CODE_SMELL
+s	java:S1253"<This block of commented-out lines of code should be removed.(ÉËœ”üÿÿÿÿ8‰Ú¡Üç1H±MRMAJORZ
+CODE_SMELL
+d
+java:S1602]",Remove useless curly braces around statement(çÔÖáúÿÿÿÿ8Ä¹êÜç1HÃPRMINORZ
+CODE_SMELL
 
-java:S3305"ZInject this field value directly into "securityFilterChain", the only method that uses it.(ø¯ÆûüÿÿÿÿH³5RCRITICALZ
+java:S3305-"ZInject this field value directly into "securityFilterChain", the only method that uses it.(ø¯ÆûüÿÿÿÿH°MRCRITICALZ
+CODE_SMELL
+Ÿ
+java:S1128"gRemove this unused import 'org.springframework.security.web.authentication.Http403ForbiddenEntryPoint'.(™¯ç²şÿÿÿÿ8‰Ú¡Üç1HØMRMINORZ
+CODE_SMELL
+ 
+java:S1128!"nRemove this unused import 'org.springframework.security.web.server.authentication.HttpStatusServerEntryPoint'.(ü‹–Q8‰Ú¡Üç1HÜMRMINORZ
+CODE_SMELL
+i
+java:S1611a"1Remove the parentheses around the "req" parameter(–÷ïÖÿÿÿÿÿ8‰Ú¡Üç1HÆPRMINORZ
+CODE_SMELL
+d
+java:S1611b"1Remove the parentheses around the "jwt" parameter(ßÎä«8‰Ú¡Üç1H«PRMINORZ
+CODE_SMELL
+‰
+java:S1128"QRemove this unused import 'org.springframework.security.oauth2.jwt.JwtException'.(Ñ“˜Òıÿÿÿÿ8™¤ÆÜç1HËORMINORZ
+CODE_SMELL
+‚
+java:S1128	"ORemove this unused import 'org.springframework.beans.factory.annotation.Value'.(ìø›8™¤ÆÜç1HÅORMINORZ
+CODE_SMELL
+‘
+java:S1128$"YRemove this unused import 'org.springframework.web.cors.UrlBasedCorsConfigurationSource'.(µ²İûùÿÿÿÿ8‰Ú¡Üç1HâMRMINORZ
+CODE_SMELL
+ˆ
+java:S1128"URemove this unused import 'org.springframework.security.oauth2.jwt.NimbusJwtDecoder'.(ûè“³8™¤ÆÜç1HÍORMINORZ
+CODE_SMELL
+}
+java:S1128""KRemove this unused import 'org.springframework.web.cors.CorsConfiguration'.(î¤·`8‰Ú¡Üç1HŞMRMINORZ
+CODE_SMELL
+z
+java:S1128"HRemove this unused import 'org.springframework.security.oauth2.jwt.Jwt'.(’¹•98™¤ÆÜç1HÇORMINORZ
+CODE_SMELL
+™
+java:S1128"aRemove this unused import 'org.springframework.security.web.authentication.HttpStatusEntryPoint'.(ÛĞ£åÿÿÿÿÿ8‰Ú¡Üç1HÚMRMINORZ
+CODE_SMELL
+‰
+java:S1128#"QRemove this unused import 'org.springframework.web.cors.CorsConfigurationSource'.(ŒºÏøşÿÿÿÿ8‰Ú¡Üç1HàMRMINORZ
+CODE_SMELL
+d
+java:S1602a",Remove useless curly braces around statement(–÷ïÖÿÿÿÿÿ8‰Ú¡Üç1H®PRMINORZ
+CODE_SMELL
+_
+java:S1602b",Remove useless curly braces around statement(ßÎä«8‰Ú¡Üç1HÓPRMINORZ
+CODE_SMELL
+‚
+java:S1128"ORemove this unused import 'org.springframework.security.oauth2.jwt.JwtDecoder'.(¸½œÚ8™¤ÆÜç1HÉORMINORZ
 CODE_SMELL

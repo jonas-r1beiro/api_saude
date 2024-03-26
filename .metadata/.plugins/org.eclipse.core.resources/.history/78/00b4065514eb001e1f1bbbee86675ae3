@@ -1,0 +1,16 @@
+spring.datasource.url=jdbc:postgresql://localhost:5432/api_saude
+
+spring.datasource.username=postgres
+spring.datasource.password=${PASSWORD_POSTGRESQL:postgres}
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.hibernate.ddl-auto=none
+
+server.error.include-stacktrace=never
+
+api.security.token.secret=${JWT_SECRET:Magna@1234}
+
+#spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:8082
+#spring.security.oauth2.resourceserver.jwt.jwk-set-uri=http://localhost:8082

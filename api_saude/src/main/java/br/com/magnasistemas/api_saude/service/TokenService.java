@@ -5,6 +5,10 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtException;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -20,6 +24,9 @@ public class TokenService {
 
 	@Value("${api.security.token.secret}")
 	private String secret;
+	
+	@Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
+	private String issuerUri;
 	
 	private static final String ISSUER = "API_SAUDE";
 	
@@ -41,13 +48,11 @@ public class TokenService {
 	
 	public String getSubject(String tokenJWT) {
 		try {
-			var algoritmo = Algorithm.HMAC256(secret);
 			
-			return JWT.require(algoritmo)
-					.withIssuer(ISSUER)
-					.build()
-					.verify(tokenJWT)
-					.getSubject();			
+			Jwt jwt = deserializarToken().decode(tokenJWT);
+				
+			return jwt.getSubject();		
+		
 		}catch(JWTVerificationException ex) {
 			throw new ArgumentoInvalidoException("Token JWT inválido ou expirado!");
 		}
@@ -55,5 +60,17 @@ public class TokenService {
 	
 	private Instant dataExpiracao() {
 		return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+//		return LocalDateTime.now().plusSeconds(30).toInstant(ZoneOffset.of("-03:00"));
+	}
+	
+	private JwtDecoder deserializarToken() {
+		JwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(issuerUri).build();
+
+        return new JwtDecoder() {
+            @Override
+            public Jwt decode(String token) throws JwtException {
+            	return jwtDecoder.decode(token);
+            }
+        };
 	}
 }

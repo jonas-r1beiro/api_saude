@@ -1,8 +1,0 @@
-package br.com.magnasistemas.api_saude.dto.papel;
-
-public record DadosDetalhamentoPapel(
-		Long id,
-		String nome
-		) {
-
-}
