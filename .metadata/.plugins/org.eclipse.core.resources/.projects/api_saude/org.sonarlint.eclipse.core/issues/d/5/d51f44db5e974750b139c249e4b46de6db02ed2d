@@ -1,8 +1,5 @@
 
-ƒ
-java:S1128"KRemove this unused import 'br.com.magnasistemas.api_saude.entity.Paciente'.(Øää“ûÿÿÿÿ8û·§Ùç1H„SRMINORZ
+]	java:S106P"+Replace this use of System.out by a logger.(µ×èì8ä‚¨Ñê1HÙURMAJORZ
 CODE_SMELL
-b	java:S106U"+Replace this use of System.out by a logger.(Ú¸¯ûþÿÿÿÿ8Âô÷Øç1HëRRMAJORZ
-CODE_SMELL
-n	java:S125]"<This block of commented-out lines of code should be removed.(ŸªÑ8º›¼Úç1HSRMAJORZ
-CODE_SMELL
+
+java:S3655L"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(Ÿì‰âøÿÿÿÿ8€…ýÑê1H£URMAJORZBUG

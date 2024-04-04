@@ -2,7 +2,6 @@ package br.com.magnasistemas.api_saude.security;
 
 
 import java.io.IOException;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,11 +11,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.com.magnasistemas.api_saude.entity.Consulta;
 import br.com.magnasistemas.api_saude.entity.Paciente;
 import br.com.magnasistemas.api_saude.entity.Usuario;
 import br.com.magnasistemas.api_saude.exception.ArgumentoInvalidoException;
-import br.com.magnasistemas.api_saude.repository.ConsultaRepository;
 import br.com.magnasistemas.api_saude.repository.PacienteRepository;
 import br.com.magnasistemas.api_saude.repository.UsuarioRepository;
 import br.com.magnasistemas.api_saude.service.TokenService;
@@ -36,9 +33,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 	
 	@Autowired
 	private PacienteRepository pacienteRepository;
-	
-	@Autowired
-	private ConsultaRepository consultaRepository;
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -78,20 +72,13 @@ public class SecurityFilter extends OncePerRequestFilter {
 						}			
 						
 					}else if(matcher.group(1).equals("pesquisa_cpf")) {
-						List<Consulta> consultas = consultaRepository.listaPorCpf("%"+valorFinalString+"%", valorFinalString);
 						
-						if(usuario.getPapel().getId() == 2) {
-							for (Consulta consulta : consultas) { 
-								System.out.println("consulta.getFkPaciente().getCpf(): " + consulta.getFkPaciente().getCpf());
-								if(!valorFinalString.equalsIgnoreCase(consulta.getFkPaciente().getCpf())) {
-									SecurityContextHolder.getContext().setAuthentication(null);
-									throw new ArgumentoInvalidoException("O CPF passado para a pesquisa não corresponse ao CPF do Paciente");
-								}
-							}		
-							
-							if(consultas.isEmpty()) {
-//								throw new ArgumentoInvalidoException("O CPF passado para a pesquisa não corresponse ao CPF do Paciente");
-							}
+						Paciente paciente = pacienteRepository.findById(usuario.getIdExterno()).get();
+						
+						if(!paciente.getCpf().equalsIgnoreCase(valorFinalString)) {
+							SecurityContextHolder.getContext().setAuthentication(null);
+							System.out.println("Chegou aqui!");
+							throw new ArgumentoInvalidoException("O CPF passado não corresponde ao CPF do paciente");
 						}
 						
 						

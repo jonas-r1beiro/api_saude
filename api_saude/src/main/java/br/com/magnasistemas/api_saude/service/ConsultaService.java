@@ -101,7 +101,7 @@ public class ConsultaService {
 	}
 	
 	public List<DadosDetalhamentoConsulta> listarPorCpf(String cpf){
-		List<Consulta> listaConsulta = consultaRepository.listaPorCpf("%"+cpf+"%", cpf);
+		List<Consulta> listaConsulta = consultaRepository.listaPorCpf("%"+cpf+"%");
 		
 		List<DadosDetalhamentoConsulta> listDet = new ArrayList<>();
 		
