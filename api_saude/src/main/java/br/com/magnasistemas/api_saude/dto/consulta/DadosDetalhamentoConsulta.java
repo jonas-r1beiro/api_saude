@@ -2,6 +2,7 @@ package br.com.magnasistemas.api_saude.dto.consulta;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -24,7 +25,7 @@ public record DadosDetalhamentoConsulta(
 				new DadosDetalhamentoPaciente(consulta.getFkPaciente()),
 				new DadosDetalhamentoMedico(consulta.getFkMedico(), convertToEspDto(consulta)),
 				new DadosDetalhamentoEspecialidade(consulta.getFkEspecialidade()),
-				consulta.getDataHora());
+				dataHoraCorretos(consulta.getDataHora()));
 	}
 	
 	
@@ -36,5 +37,14 @@ public record DadosDetalhamentoConsulta(
 		}
 		
 		return listEsp;
+	}
+	
+	private static Timestamp dataHoraCorretos(Timestamp dataHora) {
+		Calendar cal = Calendar.getInstance();
+		
+		cal.setTimeInMillis(dataHora.getTime());
+		cal.add(Calendar.HOUR_OF_DAY, -3);
+		
+		return new Timestamp(cal.getTimeInMillis());
 	}
 }

@@ -1,5 +1,3 @@
 
-]	java:S106P"+Replace this use of System.out by a logger.(µ×èì8ä‚¨Ñê1HÙURMAJORZ
-CODE_SMELL
 
-java:S3655L"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(Ÿì‰âøÿÿÿÿ8€…ıÑê1H£URMAJORZBUG
+java:S3655L"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(Ÿì‰âøÿÿÿÿ8€…ıÑê1H¤eRMAJORZBUG

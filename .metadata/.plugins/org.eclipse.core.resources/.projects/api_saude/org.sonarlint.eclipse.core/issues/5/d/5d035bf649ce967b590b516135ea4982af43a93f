@@ -1,0 +1,12 @@
+
+u
+java:S1854"@Remove this useless assignment to local variable "fusoBrasilia".(‹òòŽüÿÿÿÿ8•»ø£ì1RMAJORZ
+CODE_SMELL
+i
+java:S1128"4Remove this unused import 'java.time.ZonedDateTime'.(Å¯Ð©ûÿÿÿÿ8•»ø£ì1RMINORZ
+CODE_SMELL
+f
+java:S1481"1Remove this unused "fusoBrasilia" local variable.(‹òòŽüÿÿÿÿ8•»ø£ì1RMINORZ
+CODE_SMELL
+_	java:S106"+Replace this use of System.out by a logger.(ÈÏ±æùÿÿÿÿ8•»ø£ì1RMAJORZ
+CODE_SMELL

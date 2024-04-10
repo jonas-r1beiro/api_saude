@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationManager;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
 import org.springframework.stereotype.Component;
 
@@ -37,11 +36,7 @@ public class UserSecurity implements AuthorizationManager<RequestAuthorizationCo
 		if(usuario.getIdExterno() != null) {
 			Paciente paciente = pacienteRepository.getReferenceById(usuario.getIdExterno());
 			
-			if(paciente.getId()== usuario.getIdExterno()) {
-				return true;
-			}
-			
-			return false;
+			return paciente.getId() == usuario.getIdExterno();
 		}
 		
 		return true;

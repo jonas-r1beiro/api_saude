@@ -77,7 +77,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 						
 						if(!paciente.getCpf().equalsIgnoreCase(valorFinalString)) {
 							SecurityContextHolder.getContext().setAuthentication(null);
-							System.out.println("Chegou aqui!");
+							
 							throw new ArgumentoInvalidoException("O CPF passado não corresponde ao CPF do paciente");
 						}
 						

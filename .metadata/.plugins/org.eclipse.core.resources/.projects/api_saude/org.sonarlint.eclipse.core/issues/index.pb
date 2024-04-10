@@ -187,3 +187,15 @@ v
 Fsrc/main/java/br/com/magnasistemas/api_saude/service/PapelService.java,d\9\d9eb936c3a4fa02cf19c7c16c07ee36ba9184bcc
 ~
 Nsrc/main/java/br/com/magnasistemas/api_saude/controller/UsuarioController.java,2\2\22ab1597f727cb74b9c125b026e2e15a179d980a
+†
+Vsrc/main/java/br/com/magnasistemas/api_saude/dto/usuario/DadosDetalhamentoUsuario.java,0\a\0a72e5f9b776d28ebb080d668ac46dd8a57e4b7f
+
+Osrc/main/java/br/com/magnasistemas/api_saude/dto/papel/DadosAtualizarPapel.java,0\d\0d5d08a245d666ae5106376ce728ff024c9e7d04
+‚
+Rsrc/main/java/br/com/magnasistemas/api_saude/dto/usuario/DadosCadastroUsuario.java,0\5\0565d319ebb80fbda17813695f5f7ef88d643339
+|
+Lsrc/main/java/br/com/magnasistemas/api_saude/repository/PapelRepository.java,e\2\e2dbf9a1fd63acd951c45be572e683fff3d0cb5a
+‚
+Rsrc/main/java/br/com/magnasistemas/api_saude/dto/papel/DadosDetalhamentoPapel.java,d\4\d435525c8e61d8152ffdf9ed24fa14fcf2a46ea7
+~
+Nsrc/main/java/br/com/magnasistemas/api_saude/dto/papel/DadosCadastroPapel.java,6\3\63e031276b80bdf49c335556c260c932fc566a45
