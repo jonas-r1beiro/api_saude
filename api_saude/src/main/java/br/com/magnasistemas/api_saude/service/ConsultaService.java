@@ -50,16 +50,19 @@ public class ConsultaService {
 	PacienteRepository pacienteRepository;
 	
 	public DadosDetalhamentoConsulta cadastro (@Valid DadosCadastroConsulta dados){
-		validadorCadastro.validador(dados);
 		
 		Instant dataHoraCorreta = dados.dataHora().toInstant().plus(3, ChronoUnit.HOURS);
 		Timestamp dataHoraTimestamp = Timestamp.from(dataHoraCorreta);
+		DadosCadastroConsulta dadosHoraCorreta = new DadosCadastroConsulta(dados.idPaciente(), dados.idMedico(), dados.idEspecialidade(), dataHoraTimestamp);
+		
+		validadorCadastro.validador(dadosHoraCorreta);
+		
 		
 		Consulta consulta = new Consulta(
-										pacienteRepository.getReferenceById(dados.idPaciente()),
-										medicoRepository.getReferenceById(dados.idMedico()),
-										especialidadeRepository.getReferenceById(dados.idEspecialidade()),
-										dataHoraTimestamp
+										pacienteRepository.getReferenceById(dadosHoraCorreta.idPaciente()),
+										medicoRepository.getReferenceById(dadosHoraCorreta.idMedico()),
+										especialidadeRepository.getReferenceById(dadosHoraCorreta.idEspecialidade()),
+										dadosHoraCorreta.dataHora()
 										);
 		
 		consultaRepository.save(consulta);

@@ -22,16 +22,23 @@ public class ValidadorHorario implements HorarioPossivelConsultaValidator {
 
 	@Override
 	public void validador(Timestamp dataHora, Long idPaciente, Long idMedico) {
-		ZoneId fusoBrasilia = ZoneId.of("America/Sao_Paulo");
 		
 		LocalDateTime localDateTime = dataHora.toLocalDateTime();
-		int horaConsulta = localDateTime.getHour() + 3;
+		int horaConsulta = localDateTime.getHour();
 		int diaSemana = localDateTime.getDayOfWeek().getValue();
 		
 		System.out.println("Hora consulta: " + localDateTime);
 		
+		System.out.println("dataHora.toString(): " + dataHora.toString());
+		
 		List<Consulta> consultaBanco1 = consultaRepository.consultaPorDia(idPaciente, dataHora);
+//		List<Consulta> consultaBanco2 = consultaRepository.horarioMedico(idMedico, dataHora.toString());
 		List<Consulta> consultaBanco2 = consultaRepository.horarioMedico(idMedico, dataHora);
+//		dataHora.toInstant(
+		
+		System.out.println("dataHora: " + dataHora.toString());
+		
+		System.out.println("!consultaBanco2.isEmpty(): " + !consultaBanco2.isEmpty());
 		
 		if(horaConsulta + 1 >= 18 
 				|| horaConsulta < 9 
