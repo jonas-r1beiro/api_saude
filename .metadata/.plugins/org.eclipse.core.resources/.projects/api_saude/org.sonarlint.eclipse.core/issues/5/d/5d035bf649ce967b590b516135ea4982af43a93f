@@ -1,17 +1,0 @@
-
-l
-java:S1128"4Remove this unused import 'java.time.ZonedDateTime'.(Å¯Ğ©ûÿÿÿÿ8Š½«¥í1HäfRMINORZ
-CODE_SMELL
-b	java:S106'"+Replace this use of System.out by a logger.(§Šüÿÿÿÿ8Ÿ§¥îî1HæfRMAJORZ
-CODE_SMELL
-b	java:S106)"+Replace this use of System.out by a logger.(ä¸Àşÿÿÿÿ8¸İâ¤í1HàfRMAJORZ
-CODE_SMELL
-n	java:S125#"<This block of commented-out lines of code should be removed.(”Íİ8ÏœØßî1HŞfRMAJORZ
-CODE_SMELL
-b	java:S106 "+Replace this use of System.out by a logger.(Ø†Ÿøúÿÿÿÿ8²şÓ¤í1HãfRMAJORZ
-CODE_SMELL
-b	java:S106"+Replace this use of System.out by a logger.(ÈÏ±æùÿÿÿÿ8•»ø£ì1HßfRMAJORZ
-CODE_SMELL
-`
-java:S1128"-Remove this unused import 'java.time.ZoneId'.( Æ½“8Ä€²¥í1HáfRMINORZ
-CODE_SMELL

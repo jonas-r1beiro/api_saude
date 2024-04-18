@@ -2,8 +2,6 @@ package br.com.magnasistemas.api_saude.validators.implementers.consulta;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,20 +25,10 @@ public class ValidadorHorario implements HorarioPossivelConsultaValidator {
 		int horaConsulta = localDateTime.getHour();
 		int diaSemana = localDateTime.getDayOfWeek().getValue();
 		
-		System.out.println("Hora consulta: " + localDateTime);
-		
-		System.out.println("dataHora.toString(): " + dataHora.toString());
-		
 		List<Consulta> consultaBanco1 = consultaRepository.consultaPorDia(idPaciente, dataHora);
-//		List<Consulta> consultaBanco2 = consultaRepository.horarioMedico(idMedico, dataHora.toString());
 		List<Consulta> consultaBanco2 = consultaRepository.horarioMedico(idMedico, dataHora);
-//		dataHora.toInstant(
 		
-		System.out.println("dataHora: " + dataHora.toString());
-		
-		System.out.println("!consultaBanco2.isEmpty(): " + !consultaBanco2.isEmpty());
-		
-		if(horaConsulta + 1 >= 18 
+		if(horaConsulta + 1 > 18 
 				|| horaConsulta < 9 
 				|| diaSemana == 6 
 				|| diaSemana == 7 

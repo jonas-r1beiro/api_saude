@@ -83,18 +83,21 @@ public class ConsultaService {
 	}
 	
 	public DadosDetalhamentoConsulta atualizar (@Valid DadosAtualizarConsulta dados){
-		validadorAtualizacao.validador(dados);
-		
-		Consulta consulta = consultaRepository.getReferenceById(dados.id());
-		
-		consulta.setFkPaciente(pacienteRepository.getReferenceById(dados.idPaciente()));
-		consulta.setFkMedico(medicoRepository.getReferenceById(dados.idMedico()));
-		consulta.setFkEspecialidade(especialidadeRepository.getReferenceById(dados.idEspecialidade()));
 		
 		Instant dataHoraCorreta = dados.dataHora().toInstant().plus(3, ChronoUnit.HOURS);
 		Timestamp dataHoraTimestamp = Timestamp.from(dataHoraCorreta);
+		DadosAtualizarConsulta dadosHoraCorreta = new DadosAtualizarConsulta(dados.id(), dados.idPaciente(), dados.idMedico(), dados.idEspecialidade(), dataHoraTimestamp);
 		
-		consulta.setDataHora(dataHoraTimestamp);
+		
+		validadorAtualizacao.validador(dadosHoraCorreta);
+		
+		Consulta consulta = consultaRepository.getReferenceById(dadosHoraCorreta.id());
+		
+		consulta.setFkPaciente(pacienteRepository.getReferenceById(dadosHoraCorreta.idPaciente()));
+		consulta.setFkMedico(medicoRepository.getReferenceById(dadosHoraCorreta.idMedico()));
+		consulta.setFkEspecialidade(especialidadeRepository.getReferenceById(dadosHoraCorreta.idEspecialidade()));
+		
+		consulta.setDataHora(dadosHoraCorreta.dataHora());
 		
 		return new DadosDetalhamentoConsulta(consulta);
 	}

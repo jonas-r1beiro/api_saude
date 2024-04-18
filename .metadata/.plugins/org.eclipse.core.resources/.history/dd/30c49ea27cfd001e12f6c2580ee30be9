@@ -1,0 +1,10 @@
+package br.com.magnasistemas.api_saude.validators.interfaces.consulta;
+
+import br.com.magnasistemas.api_saude.entity.Consulta;
+import br.com.magnasistemas.api_saude.entity.Medico;
+
+public interface ConsultaEspecialidadeValidator {
+	
+	void validador(Consulta consulta, Medico medico);
+
+}

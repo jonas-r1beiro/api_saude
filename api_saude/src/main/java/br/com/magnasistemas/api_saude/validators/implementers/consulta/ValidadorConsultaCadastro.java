@@ -24,6 +24,9 @@ public class ValidadorConsultaCadastro implements CadastrarConsultaValidator {
 	
 	@Autowired
 	ValidadorHorario validadorHorario;
+	
+	@Autowired
+	ValidadorConsultaEspecialidade validadorEspecialidade;
 
 	@Override
 	public void validador(DadosCadastroConsulta dados) {
@@ -38,6 +41,8 @@ public class ValidadorConsultaCadastro implements CadastrarConsultaValidator {
 		if(!pacienteRepository.existsById(dados.idPaciente())) {
 			throw new ArgumentoInvalidoException("O paciente passado não existe!");
 		}
+		
+		validadorEspecialidade.validador(especialidadeRepository.getReferenceById(dados.idEspecialidade()), medicoRepository.getReferenceById(dados.idMedico()));
 		
 		validadorHorario.validador(dados.dataHora(), dados.idPaciente(), dados.idMedico());
 

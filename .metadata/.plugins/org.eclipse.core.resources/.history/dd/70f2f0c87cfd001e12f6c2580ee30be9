@@ -1,0 +1,23 @@
+package br.com.magnasistemas.api_saude.validators.implementers.consulta;
+
+import br.com.magnasistemas.api_saude.entity.Consulta;
+import br.com.magnasistemas.api_saude.entity.Especialidade;
+import br.com.magnasistemas.api_saude.entity.Medico;
+import br.com.magnasistemas.api_saude.exception.ArgumentoInvalidoException;
+import br.com.magnasistemas.api_saude.validators.interfaces.consulta.ConsultaEspecialidadeValidator;
+
+public class ValidadorConsultaEspecialidade implements ConsultaEspecialidadeValidator{
+
+	@Override
+	public void validador(Consulta consulta, Medico medico) {
+		for (Especialidade especialidade : medico.getEspecialidades()) {
+			if(especialidade.getId() == consulta.getFkEspecialidade().getId()) {
+				return;
+			}
+		}
+		
+		throw new ArgumentoInvalidoException("O médico não possui a especialidade da consulta!");
+		
+	}
+
+}

@@ -199,3 +199,7 @@ Lsrc/main/java/br/com/magnasistemas/api_saude/repository/PapelRepository.java,e
 Rsrc/main/java/br/com/magnasistemas/api_saude/dto/papel/DadosDetalhamentoPapel.java,d\4\d435525c8e61d8152ffdf9ed24fa14fcf2a46ea7
 ~
 Nsrc/main/java/br/com/magnasistemas/api_saude/dto/papel/DadosCadastroPapel.java,6\3\63e031276b80bdf49c335556c260c932fc566a45
+Ÿ
+osrc/main/java/br/com/magnasistemas/api_saude/validators/interfaces/consulta/ConsultaEspecialidadeValidator.java,3\5\35198500efd7884a4dd8c7d89d6f5c62226c61ea
+¡
+qsrc/main/java/br/com/magnasistemas/api_saude/validators/implementers/consulta/ValidadorConsultaEspecialidade.java,d\3\d3b9e4aecfc7ed023e25aaf863c409382b92dd4c
